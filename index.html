@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>30 Seconds</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- ### Loading in base styles These should not be changed -->
+<link href="https://cdn2.pri.org/themes/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic|Alegreya+Sans&subset=latin,vietnamese,latin-ext' rel='stylesheet' type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab|Sanchez" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<!-- ### KEEP for bootstrap - HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- ### Add in additional CSS Libraries here -->
+
+
+<style>
+			html,body{font-size:22px;font-weight:400;background:#fff; font-family: 'Nunito Sans', sans-serif; font-weight: 200;}
+
+  .chart-container {position:relative;}	
+  .chart-wrapper {position:absolute;bottom:5%;width: 100%;opacity:0;}
+  #chart-1 {height: 400px;}
+  #chart-2, #chart-3  {height: 350px;}
+  .chart-title {font-weight: 500;font-size: 18px;}
+  .scroll-area {position:relative;}
+  .scroll-text{position:relative;z-index:9!important;pointer-events: none;color: #333;font-weight: 500;-webkit-font-smoothing: antialiased;}
+  .scroll-text-box {padding:10px 15px;background-color: rgba(255,255,255,0.9);border-radius: 5px;}
+  .is-bottom {
+    position:absolute;
+    top: auto;
+    bottom:0;
+  }
+  .stuck {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+
+</style>
+</head>
+<body class="interactive">
+
+
+ <!-- ### example of header with a cover image -->
+ <header class="header cover">
+    <div class="container text">
+      <h1 id="title">Sample title: The Amazon used to be a hedge against climate change</h1>
+      <div class="teaser">
+        <p>Sample subtitle: The world's greatest forest used to absorb greenhouse gases. Now, it may be emitting them.</p>
+      </div>
+    </div>
+  </header>
+
+<article role="main">
+    <div class="container text">
+      <div class="interactive-caption">
+        Top video/photo: Caption here. 
+        <div class="image__credit">Credit: XXXX XXXX/The World</div>
+      </div>
+      <p><span class="drop-cap">I</span>n a pristine patch of tropical rainforest in the central Amazon north of Manaus, a group of Brazilian scientists unloads boxes of heavy instruments from a truck and disappears down a thin path into the trees. As I walk with them, my clothes are instantly soaked from the humidity and a chorus of insects drowns out the sound of our footsteps. The forest is a tangle of leaves and vines competing for the little sunlight that streams through the thick canopy high above our heads.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <hr>
+      <div class="scroll-area">
+        <div class="chart-container sticky-box text-center" id="sticky-box-1">
+          <div class="chart-wrapper" id="chart-wrapper-1">
+            <div id="chart-1"></div>
+            <div class="chart-title">Percentage of Hispanic voters who are naturalized citizens</div>
+          </div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-1">
+          <div class="scroll-text-box">In every 100 Hispanic Gen Z who are eligible to vote, only 3 of them are naturalized citizen.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-2">
+          <div class="scroll-text-box">Among Hipanic Milennials voters, this number is 12, which is four times higher than Gen Z.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-3">
+          <div class="scroll-text-box">The number is much higher in older generations. The average for all Hispanic voters is 23 in every 100 voters.</div>
+        </div>
+      </div>
+      
+      <div id="scroll-text-4"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+      
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>      
+      
+      <div class="scroll-area">
+        <div class="chart-container sticky-box text-center" id="sticky-box-2">
+          <div class="chart-wrapper" id="chart-wrapper-2">
+            <div id="chart-2"></div>
+            <div class="chart-title">Language spoken at home for Hispanic voters</div>
+          </div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-5">
+          <div class="scroll-text-box">Although more than half of Hispanic GenZ voters still speak English at home, this number is the highest among all generations. </div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-6">
+          <div class="scroll-text-box">There's no significant difference among Hispanic Milennials. In both generations, 4 out of 10 eligible voters speak English at home.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-7">
+          <div class="scroll-text-box">The number saw a huge drop among the Generation X and Boomers.</div>
+        </div>
+      </div>  
+      <div id="scroll-text-8"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>  
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>      
+
+      <div class="scroll-area">
+        <div class="chart-container sticky-box text-center" id="sticky-box-3">
+          <div class="chart-wrapper" id="chart-wrapper-3">
+            <div id="chart-3"></div>
+            <div class="chart-title">Growth of eligible voters 2001-2017</div>
+          </div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-9">
+          <div class="scroll-text-box">The total number of eligible voters in the US has grown by 23% from the beginning of the century to 2017.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-10">
+          <div class="scroll-text-box">The growth of eligible Hispanic voters is much higher but it is not obvious in this chart as their voter population is relatively small compared to the national total.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-11">
+          <div class="scroll-text-box">The difference is clear if we compare the growth rate of both groups. From 2001 to 2017, the number of eligible Hispanic voters nearly doubled while the national growth is just 23%.</div>
+        </div>
+        <div class="container text scroll-text">
+          <div class="scroll-text-box">This means the number of eligible Hispanic voters is increasing 4 times faster than the national average.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-12">
+          <div class="scroll-text-box">The fast growth of Hispanic voters has increased their share of the total voters from 7.8% in 2001 to 12.5% in 2017.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-13">
+          <div class="scroll-text-box">If we zoom in on eligible voters among the Gen Z, the number of both White and Black voters have dropped in recent years.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-14">
+          <div class="scroll-text-box">While Asian voters grow steadily, Hispanic voters have seen a huge increase since 2005, overtaking Black voters in 2010 to become the largest minority group among the Gen Z voters.</div>
+        </div>
+      </div>  
+      <div id="scroll-text-15"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>  
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>      
+      
+    </div>
+    
+    
+</article>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/shortcuts/sticky.min.js"></script>
+<script src="js/project.js" charset="utf-8"></script>
+</body>
+</html>
