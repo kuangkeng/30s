@@ -20,33 +20,34 @@
 
 
 <style>
-			html,body{font-size:22px;font-weight:400;background:#fff; font-family: 'Nunito Sans', sans-serif; font-weight: 200;}
-
+	html,body{font-size:22px;font-weight:400;background:#fff; font-family: 'Nunito Sans', sans-serif; font-weight: 200;}
   .chart-container {position:relative;}	
   .chart-wrapper {position:absolute;bottom:5%;width: 100%;opacity:0;}
   #chart-1 {height: 400px;}
   #chart-2, #chart-3  {height: 350px;}
-  .chart-title {font-weight: 500;font-size: 18px;}
+  #chart-4, #chart-5 {height: 300px;}
+  .chart-title {font-weight: 500;font-size: 18px;line-height: 1.3em;}
   .scroll-area {position:relative;}
   .scroll-text{position:relative;z-index:9!important;pointer-events: none;color: #333;font-weight: 500;-webkit-font-smoothing: antialiased;}
   .scroll-text-box {padding:10px 15px;background-color: rgba(255,255,255,0.9);border-radius: 5px;}
   .is-bottom {
-    position:absolute;
+    position:absolute !important;
     top: auto;
-    bottom:0;
+    bottom:10%;
   }
   .stuck {
     position: fixed;
     top: 0;
     width: 100%;
   }
+  .invisible {
+    opacity:0;
+  }
 
 
 </style>
 </head>
 <body class="interactive">
-
-
  <!-- ### example of header with a cover image -->
  <header class="header cover">
     <div class="container text">
@@ -65,7 +66,7 @@
       </div>
       <p><span class="drop-cap">I</span>n a pristine patch of tropical rainforest in the central Amazon north of Manaus, a group of Brazilian scientists unloads boxes of heavy instruments from a truck and disappears down a thin path into the trees. As I walk with them, my clothes are instantly soaked from the humidity and a chorus of insects drowns out the sound of our footsteps. The forest is a tangle of leaves and vines competing for the little sunlight that streams through the thick canopy high above our heads.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
+      <hr> 
       <div class="scroll-area">
         <div class="chart-container sticky-box text-center" id="sticky-box-1">
           <div class="chart-wrapper" id="chart-wrapper-1">
@@ -145,13 +146,47 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>      
-      
-    </div>
-    
-    
+
+      <div class="scroll-area">
+        <div class="chart-container sticky-box text-center" id="sticky-box-4">
+          <div class="chart-wrapper" id="chart-wrapper-4">
+            <div id="chart-4"></div>
+            <div class="chart-title">States where Hispanic GenZ voters have the biggest impact</div>
+          </div>
+          <div class="chart-wrapper" id="chart-wrapper-5">
+            <div id="chart-5">
+              <table id="chart4Table" style="width: 100%;">
+                <tr>
+                  <td style="width: 50%;"><div id="chart-5a"></div></td>
+                  <td style="width: 50%;"><div id="chart-5b"></div></td>
+                </tr>
+              </table>
+            </div>
+            <div class="chart-title">States where Hispanic GenZ voters have the biggest impact</div>
+          </div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-16">
+          <div class="scroll-text-box">The red bars represent the majority voters garnered by Trump in Texas, Florida and Pennsylvania.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-17">
+          <div class="scroll-text-box">The number of Hispanic Gen Z who are eligible to vote in the 2020 elections in those three states, represented by the orange bars, is higher than Trump's majority.</div>
+        </div>
+        <div class="container text scroll-text">
+          <div class="scroll-text-box">Together the three states can contribute 87 electoral votes to one of the candidates.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-18">
+          <div class="scroll-text-box">The same scenario is seen in another three smaller states won by Trump in 2016 - Arizona, Michigan and Wisconsin - with a total of 37 electoral votes.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-19">
+          <div class="scroll-text-box">For Democrats, only three small states - New Mexico, Nevada, New Hampshire - will see the number of eligible Hispanic voters from Gen Z higher than Clinton's majority in 2016. Together they contributed only 15 electoral votes to Clinton.</div>
+        </div>
+      </div>  
+      <div id="scroll-text-20"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>  
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>      
+    </div>    
 </article>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>

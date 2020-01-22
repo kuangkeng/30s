@@ -57,6 +57,24 @@ $(document).ready(function() {
         {name:"Hispanic",id:"Hispanic",data:[7.82,8.06,8.26,8.49,8.55,8.71,8.87,9.18,9.42,10.01,10.40,10.74,10.98,11.33,11.70,11.94,12.46],color:"#FF9600"},
     ];
 
+    var dataSwingBig = [
+        [{name:"Majority",id:"Majority",data:[807.18,112.91,44.29],color:"#DE0100"}],
+        [{name:"Hispanic GenZ",id:"GenZ",data:[1041.55,384.03,103.74],color:"#FF9600"}],
+    ];
+    var catSwingBig = ["TX","FL","PA"];
+
+    var dataSwingTrump = [
+        {name:"Hispanic GenZ",id:"GenZ",data:[223.62,53.67,39.06],color:"#FF9600"},
+        {name:"Majority",id:"Majority",data:[91.23,10.70,22.75],color:"#DE0100"},
+    ];
+    var catSwingTrump = ["AZ","MI","WI"];
+
+    var dataSwingClinton = [
+        {name:"Hispanic GenZ",id:"GenZ",data:[93.50,77.32,5.26],color:"#FF9600"},
+        {name:"Majority",id:"Majority",data:[65.57,27.20,2.74],color:"#031BBB"},
+    ];
+    var catSwingClinton = ["NM","NV","NH"];
+
     $(".scroll-text").css("padding-bottom", height);
     $(".chart-container").css({'width':chartWidth,'height':chartHeight});
 
@@ -68,8 +86,11 @@ $(document).ready(function() {
     })
     var stickyBox3 = new Waypoint.Sticky({
         element: $('#sticky-box-3')
-    })    
-
+    })  
+    var stickyBox3 = new Waypoint.Sticky({
+        element: $('#sticky-box-4')
+    })  
+    
     $("#scroll-text-1").waypoint(function(direction) {
         if (direction === "down") {
             $("#chart-wrapper-1").fadeTo(500, 1, makeChart1());
@@ -92,6 +113,7 @@ $(document).ready(function() {
             chart1.get("naturalizedChart").points[2].update({y:33.1,dataLabels: labelstyle});
             chart1.get("naturalizedChart").points[3].update({y:41.3,dataLabels: labelstyle});
             chart1.get("naturalizedChart").points[4].update({y:22.9,dataLabels: labelstyle});
+            
         } else {}
     }, {
         offset: "50%"
@@ -99,9 +121,10 @@ $(document).ready(function() {
 
     $("#scroll-text-4").waypoint(function(direction) {
         if (direction === "down") {
-            stickyBox1.destroy();
-            $("#sticky-box-1").addClass("is-bottom");
-        } else {}
+            $("#sticky-box-1").animate({opacity: 0},1000);
+        } else {
+            $("#sticky-box-1").animate({opacity: 1},1000);
+        }
     }, {
         offset: "100%"
     });
@@ -140,9 +163,10 @@ $(document).ready(function() {
 
     $("#scroll-text-8").waypoint(function(direction) {
         if (direction === "down") {
-            stickyBox2.destroy();
-            $("#sticky-box-2").addClass("is-bottom");
-        } else {}
+            $("#sticky-box-2").animate({opacity: 0},1000);
+        } else {
+            $("#sticky-box-2").animate({opacity: 1},1000);
+        }
     }, {
         offset: "100%"
     });
@@ -213,15 +237,64 @@ $(document).ready(function() {
         offset: "50%"
     });
 
-
     $("#scroll-text-15").waypoint(function(direction) {
         if (direction === "down") {
-            stickyBox3.destroy();
-            $("#sticky-box-3").addClass("is-bottom");
-        } else {}
+            $("#sticky-box-3").animate({opacity: 0},1000);
+        } else {
+            $("#sticky-box-3").animate({opacity: 1},1000);
+        }
     }, {
         offset: "100%"
     });
+
+    $("#scroll-text-16").waypoint(function(direction) {
+        if (direction === "down") {
+            $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
+            chart4.get("Majority").points[0].update({dataLabels: labelstyle11});
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-17").waypoint(function(direction) {
+        if (direction === "down") {
+            chart4.addSeries(dataSwingBig[1][0]);
+            chart4.get("GenZ").points[0].update({dataLabels: labelstyle11});
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-18").waypoint(function(direction) {
+        if (direction === "down") {
+            $("#chart-wrapper-4").fadeTo(500, 0);
+            $("#chart-wrapper-5").fadeTo(500, 1, makeChart5a());
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-19").waypoint(function(direction) {
+        if (direction === "down") {
+            makeChart5b();
+            chart5b.get("Majority").points[0].update({dataLabels: labelstyle12});
+            chart5b.get("GenZ").points[0].update({dataLabels: labelstyle13});
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-20").waypoint(function(direction) {
+        if (direction === "down") {
+            $("#sticky-box-4").animate({opacity: 0},1000);
+        } else {
+            $("#sticky-box-4").animate({opacity: 1},1000);
+        }
+    }, {
+        offset: "100%"
+    });
+
+
 
     var labelstyle ={
         enabled: true,
@@ -397,6 +470,43 @@ $(document).ready(function() {
         },
     };
 
+    var labelstyle11 ={
+        enabled: true,
+        allowOverlap: true,
+        format: '{series.name}',
+        inside: true,
+        style:{
+            fontSize: '12px',
+            fontWeight: '400',
+            color: '#fff',
+            textOutline: false,
+        },
+    };
+
+    var labelstyle12 ={
+        enabled: true,
+        allowOverlap: true,
+        format: '{series.name}',
+        style:{
+            fontSize: '10px',
+            fontWeight: '200',
+            color: '#333',
+            textOutline: false,
+        },
+    };
+
+    var labelstyle13 ={
+        enabled: true,
+        allowOverlap: true,
+        format: 'GenZ<br>Hispanic',
+        style:{
+            fontSize: '10px',
+            fontWeight: '200',
+            color: '#333',
+            textOutline: false,
+        },
+    };
+
     function addLabel3a(id){
         var siri = chart3a.get(id);
         var length = siri.points.length;
@@ -483,7 +593,7 @@ $(document).ready(function() {
                     borderWidth: 0,
                     groupPadding: 0.05,
                     pointPadding: 0,
-                    stickyTracking: false,
+                    states: {hover: {enabled: false},inactive: {opacity: 1},},
                 },
             },    
             series: dataLanguage
@@ -531,6 +641,7 @@ $(document).ready(function() {
                 height: 200,
                 renderTo: 'chart-3',
                 type: 'bar',
+                className: 'is-bottom',
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -643,5 +754,119 @@ $(document).ready(function() {
         });
         addLabel3d('White');
     }
+
+    function makeChart4() {
+        chart4 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'chart-4',
+                type: 'bar',
+                height: '280',
+            },
+            title: {text: null},
+            subtitle: {enabled: false},
+            xAxis: {
+                categories: catSwingBig,
+                labels: {style:{fontSize: '12px'}}
+            },  
+            yAxis: {
+                title: {text: 'No. of voters (thousands)'},
+                endOnTick: false,
+                labels: {style:{fontSize: '12px'}},
+                max:1000,
+                tickPositions: [0, 500, 1000],
+            },
+            credits: {enabled: false},
+            legend: {enabled: false},
+            tooltip: {enabled: false},
+            plotOptions: {
+                bar: {
+                    dataLabels: {enabled: false}
+                },
+                series:{
+                    borderWidth: 0,
+                    groupPadding: 0.1,
+                    pointPadding: 0,
+                    states: {hover: {enabled: false},inactive: {opacity: 1},},
+                },
+            },    
+            series: dataSwingBig[0]
+        });
+    }
+
+    function makeChart5a() {
+        chart5a = new Highcharts.Chart({
+            chart: {
+                renderTo: 'chart-5a',
+                type: 'bar',
+                height: '280',
+            },
+            title: {text: null},
+            subtitle: {enabled: false},
+            xAxis: {
+                categories: catSwingTrump,
+                labels: {style:{fontSize: '12px'}}
+            },  
+            yAxis: {
+                title: {text: 'No. of voters (thousands)'},
+                endOnTick: false,
+                labels: {style:{fontSize: '12px'}},
+                max:250,
+                tickPositions: [0, 100, 200],
+            },
+            credits: {enabled: false},
+            legend: {enabled: false},
+            tooltip: {enabled: false},
+            plotOptions: {
+                bar: {
+                    dataLabels: {enabled: false}
+                },
+                series:{
+                    borderWidth: 0,
+                    groupPadding: 0.1,
+                    pointPadding: 0,
+                    states: {hover: {enabled: false},inactive: {opacity: 1},},
+                },
+            },    
+            series: dataSwingTrump
+        });
+    }
+    function makeChart5b() {
+        chart5b = new Highcharts.Chart({
+            chart: {
+                renderTo: 'chart-5b',
+                type: 'bar',
+                height: '280',
+            },
+            title: {text: null},
+            subtitle: {enabled: false},
+            xAxis: {
+                categories: catSwingClinton,
+                labels: {style:{fontSize: '12px'}},
+            },  
+            yAxis: {
+                title: {text: 'No. of voters (thousands)'},
+                endOnTick: false,
+                labels: {style:{fontSize: '12px'}},
+                max:250,
+                tickPositions: [0, 100, 200],
+            },
+            credits: {enabled: false},
+            legend: {enabled: false},
+            tooltip: {enabled: false},
+            plotOptions: {
+                bar: {
+                    dataLabels: {enabled: false}
+                },
+                series:{
+                    borderWidth: 0,
+                    groupPadding: 0.1,
+                    pointPadding: 0,
+                    states: {hover: {enabled: false},inactive: {opacity: 1},},
+                },
+            },    
+            series: dataSwingClinton
+        });
+    }
+    
    
 });     
