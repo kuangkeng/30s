@@ -4,7 +4,7 @@ $(document).ready(function() {
     var $scrollArea = $('.scroll-area'),
         bottomSpace = Math.floor(height*0.07),
         chartWidth = $scrollArea.width(),
-        chartMargin = 0 - (chartWidth/2), //use this to center align the chart when it's position is set as fixed
+        chartMargin = 0 - (chartWidth/2),
         chartHeight = Math.floor(height);
 
 
@@ -14,11 +14,10 @@ $(document).ready(function() {
 
     var labels = {};
     var dataNaturalized = [
-        {name:"GenZ",y:3.3,color:"#FF9600"},
-        {name:"Millennials",y:0},
-        {name:"Generation X",y:0},
-        {name:"Boomers",y:0},
-        {name:"Hispanic average",y:0},
+        {name:"18-23",y:95.1,color:"#FF9600"},
+        {name:"24-39",y:0},
+        {name:"40-55",y:0},
+        {name:"56-74",y:0},
     ]; 
     var catNaturalized = [];
     for (var i = 0; i < dataNaturalized.length; i++){
@@ -26,10 +25,9 @@ $(document).ready(function() {
     }
 
     var dataLanguage = [
-        {name:"Spanish", id:"Spanish", data:[61,0,0,0,0],color:"#F7DEBB"},
-        {name:"English", id:"English", data:[38.6,0,0,0,0],color:"#FF9600"},
+        {name:"Spanish", id:"Spanish", data:[61,62.3,69.2,73.5],color:"#F7DEBB"},
+        {name:"English", id:"English", data:[38.6,37.2,30.4,25.9],color:"#FF9600"},
     ];
-    var catLanguage = ["GenZ","Millennials","Generation X","Boomers","Hispanic average"];
 
     var dataGrowthNum = [
         [{name:"White", id:"White", data:[12.84,13.12,13.27,13.42,13.45,15.39,15.44,15.65,15.56,15.00,15.07,15.00,14.88,14.65,14.38,14.17,13.95],color:"#0089BD"}],
@@ -53,10 +51,19 @@ $(document).ready(function() {
     }
 
     var dataGrowthPct = [
-        {name:"Others",id:"Others",data:[92.18,91.94,91.74,91.51,91.45,91.29,91.13,90.82,90.58,89.99,89.60,89.26,89.02,88.67,88.30,88.06,87.54],color:"#0089BD"},
-        {name:"Hispanic",id:"Hispanic",data:[7.82,8.06,8.26,8.49,8.55,8.71,8.87,9.18,9.42,10.01,10.40,10.74,10.98,11.33,11.70,11.94,12.46],color:"#FF9600"},
+        {name:"Latino",id:"Latino",data:[7.82,8.06,8.26,8.49,8.55,8.71,8.87,9.18,9.42,10.01,10.40,10.74,10.98,11.33,11.70,11.94,null,null,null,null],color:"#FF9600"},      
+        {name:"Black",id:"Black",data:[11.24,11.29,11.40,11.44,11.50,11.86,11.91,11.99,12.07,12.20,12.27,12.30,12.36,12.44,12.46,12.47,null,null,null,null],color:"#23C763"},
+        {name:"Asian",id:"Asian",data:[2.70,2.90,3.07,3.16,3.26,3.32,3.35,3.38,3.47,3.68,3.74,3.85,4.00,4.13,4.22,4.30,null,null,null,null],color:"#E0B500"},
+        {name:"White",id:"White",data:[76.24,75.78,75.46,75.10,74.77,74.15,73.85,73.37,72.91,71.86,71.31,70.76,70.22,69.64,69.08,68.67,null,null,null,null],color:"#0089BD"},
     ];
 
+    var dataGrowthPct2 = [
+        [12.46,12.77,13.04,13.30],
+        [12.47,12.50,12.50,12.50],
+        [4.42,4.54,4.62,4.70],
+        [67.95,67.42,67.06,66.70],
+    ];
+    
     var dataSwingBig = [
         [{name:"Majority",id:"Majority",data:[807.18,112.91,44.29],color:"#DE0100"}],
         [{name:"Hispanic GenZ",id:"GenZ",data:[1041.55,384.03,103.74],color:"#FF9600"}],
@@ -78,23 +85,18 @@ $(document).ready(function() {
     $(".scroll-text").css("padding-bottom", height);
     $(".chart-container").css({'width':chartWidth,'height':chartHeight});
 
-    var stickyBox1 = new Waypoint.Sticky({
-        element: $('#sticky-box-1')
-    })
-    var stickyBox2 = new Waypoint.Sticky({
-        element: $('#sticky-box-2')
-    })
-    var stickyBox3 = new Waypoint.Sticky({
-        element: $('#sticky-box-3')
-    })  
-    var stickyBox3 = new Waypoint.Sticky({
-        element: $('#sticky-box-4')
-    })  
+    var stickyBox1 = new Waypoint.Sticky({element: $('#sticky-box-1')})
+    var stickyBox2 = new Waypoint.Sticky({element: $('#sticky-box-2')})
+    // var stickyBox3 = new Waypoint.Sticky({element: $('#sticky-box-3')})  
+    var stickyBox3 = new Waypoint.Sticky({element: $('#sticky-box-4')})  
     
     $("#scroll-text-1").waypoint(function(direction) {
         if (direction === "down") {
             $("#chart-wrapper-1").fadeTo(500, 1, makeChart1());
-            chart1.get("naturalizedChart").points[0].update({dataLabels: labelstyle});
+            chart1.get("Latino").points[15].update({dataLabels: labelstyle1_1});
+            chart1.get("Black").points[15].update({dataLabels: labelstyle1_2});
+            chart1.get("Asian").points[15].update({dataLabels: labelstyle1_3});
+            chart1.get("White").points[15].update({dataLabels: labelstyle1_4});
         } else {}
     }, {
         offset: "50%"
@@ -102,7 +104,22 @@ $(document).ready(function() {
 
     $("#scroll-text-2").waypoint(function(direction) {
         if (direction === "down") {
-            chart1.get("naturalizedChart").points[1].update({y:12.1,dataLabels: labelstyle});
+            for (i=0; i < 2; i += 1) {
+                var num = 16+i;
+                chart1.get("Latino").points[num].update({y:dataGrowthPct2[0][i]});
+            }
+            for (i=0; i < 2; i += 1) {
+                var num = 16+i;
+                chart1.get("Black").points[num].update({y:dataGrowthPct2[1][i]});
+            }
+            for (i=0; i < 2; i += 1) {
+                var num = 16+i;
+                chart1.get("Asian").points[num].update({y:dataGrowthPct2[2][i]});
+            }
+            for (i=0; i < 2; i += 1) {
+                var num = 16+i;
+                chart1.get("White").points[num].update({y:dataGrowthPct2[3][i]});
+            }  
         } else {}
     }, {
         offset: "50%"
@@ -110,9 +127,26 @@ $(document).ready(function() {
 
     $("#scroll-text-3").waypoint(function(direction) {
         if (direction === "down") {
-            chart1.get("naturalizedChart").points[2].update({y:33.1,dataLabels: labelstyle});
-            chart1.get("naturalizedChart").points[3].update({y:41.3,dataLabels: labelstyle});
-            chart1.get("naturalizedChart").points[4].update({y:22.9,dataLabels: labelstyle});
+            for (i=2; i < 4; i += 1) {
+                var num = 16+i;
+                chart1.get("Latino").points[num].update({y:dataGrowthPct2[0][i]});
+            }
+            for (i=2; i < 4; i += 1) {
+                var num = 16+i;
+                chart1.get("Black").points[num].update({y:dataGrowthPct2[1][i]});
+            }
+            for (i=2; i < 4; i += 1) {
+                var num = 16+i;
+                chart1.get("Asian").points[num].update({y:dataGrowthPct2[2][i]});
+            }
+            for (i=2; i < 4; i += 1) {
+                var num = 16+i;
+                chart1.get("White").points[num].update({y:dataGrowthPct2[3][i]});
+            }
+            chart1.get("Latino").points[19].update({dataLabels: labelstyle1_6});
+            chart1.get("Black").points[19].update({dataLabels: labelstyle1_6});
+            chart1.get("Asian").points[19].update({dataLabels: labelstyle1_7});
+            chart1.get("White").points[19].update({dataLabels: labelstyle1_8});
             
         } else {}
     }, {
@@ -132,8 +166,7 @@ $(document).ready(function() {
     $("#scroll-text-5").waypoint(function(direction) {
         if (direction === "down") {
             $("#chart-wrapper-2").fadeTo(500, 1, makeChart2());
-            chart2.get("English").points[0].update({dataLabels: labelstyle2});
-            chart2.get("Spanish").points[0].update({dataLabels: labelstyle2});
+            chart2.get("naturalizedChart").points[0].update({dataLabels: labelstyle});
         } else {}
     }, {
         offset: "50%"
@@ -141,8 +174,7 @@ $(document).ready(function() {
 
     $("#scroll-text-6").waypoint(function(direction) {
         if (direction === "down") {
-            chart2.get("English").points[1].update({y:37.2,dataLabels: labelstyle2,color:"#0089BD"});
-            chart2.get("Spanish").points[1].update({y:62.3,dataLabels: labelstyle2,color:"#B4D9EE"});
+            chart2.get("naturalizedChart").points[1].update({y:86.0,dataLabels: labelstyle});
         } else {}
     }, {
         offset: "50%"
@@ -150,12 +182,8 @@ $(document).ready(function() {
 
     $("#scroll-text-7").waypoint(function(direction) {
         if (direction === "down") {
-            chart2.get("English").points[2].update({y:30.4,dataLabels: labelstyle,color:"#0089BD"});
-            chart2.get("Spanish").points[2].update({y:69.2,dataLabels: labelstyle,color:"#B4D9EE"});
-            chart2.get("English").points[3].update({y:25.9,dataLabels: labelstyle,color:"#0089BD"});
-            chart2.get("Spanish").points[3].update({y:73.5,dataLabels: labelstyle,color:"#B4D9EE"});
-            chart2.get("English").points[4].update({y:32.7,dataLabels: labelstyle,color:"#0089BD"});
-            chart2.get("Spanish").points[4].update({y:66.8,dataLabels: labelstyle,color:"#B4D9EE"});
+            chart2.get("naturalizedChart").points[2].update({y:65.2,dataLabels: labelstyle});
+            chart2.get("naturalizedChart").points[3].update({y:57.2,dataLabels: labelstyle});
         } else {}
     }, {
         offset: "50%"
@@ -171,129 +199,197 @@ $(document).ready(function() {
         offset: "100%"
     });
 
-    $("#scroll-text-9").waypoint(function(direction) {
+    $("#sticky-box-3").waypoint(function(direction) {
         if (direction === "down") {
-            $("#chart-wrapper-3").fadeTo(500, 1, makeChart3a());
-            chart3a.get("Total").points[0].update({dataLabels: labelstyle3});
-            chart3a.get("Total").points[16].update({dataLabels: labelstyle4});
+            $("#chart-wrapper-3").fadeTo(500, 1, makeChart3());
+            chart3.get("English").points[0].update({dataLabels: labelstyle2});
+            chart3.get("Spanish").points[0].update({dataLabels: labelstyle2});
         } else {}
     }, {
         offset: "50%"
     });
 
-    $("#scroll-text-10").waypoint(function(direction) {
-        if (direction === "down") {
-            chart3a.addSeries(dataGrowthNum2[1][0]);
-            addLabel3a("Hispanic");
-            chart3a.get("Hispanic").points[0].update({dataLabels: labelstyle5});
-            chart3a.get("Hispanic").points[16].update({dataLabels: labelstyle6});
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-10").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         chart3a.addSeries(dataGrowthNum2[1][0]);
+    //         addLabel3a("Hispanic");
+    //         chart3a.get("Hispanic").points[0].update({dataLabels: labelstyle5});
+    //         chart3a.get("Hispanic").points[16].update({dataLabels: labelstyle6});
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-11").waypoint(function(direction) {
-        if (direction === "down") {
-            chart3a.destroy();
-            makeChart3b();
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-11").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         chart3a.destroy();
+    //         makeChart3b();
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-12").waypoint(function(direction) {
-        if (direction === "down") {
-            chart3b.destroy();
-            makeChart3c();
-            chart3c.get("Hispanic").points[0].update({dataLabels: labelstyle7});
-            chart3c.get("Hispanic").points[16].update({dataLabels: labelstyle8});
-            chart3c.get("Others").points[8].update({dataLabels: labelstyle9});
-            chart3c.get("Hispanic").points[8].update({dataLabels: labelstyle10});
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-12").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         chart3b.destroy();
+    //         makeChart3c();
+    //         chart3c.get("Hispanic").points[0].update({dataLabels: labelstyle7});
+    //         chart3c.get("Hispanic").points[16].update({dataLabels: labelstyle8});
+    //         chart3c.get("Others").points[8].update({dataLabels: labelstyle9});
+    //         chart3c.get("Hispanic").points[8].update({dataLabels: labelstyle10});
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-13").waypoint(function(direction) {
-        if (direction === "down") {
-            chart3c.destroy();
-            makeChart3d();
-            chart3d.addSeries(dataGrowthNum[1][0]);
-            addLabel3d("Black");
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-13").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         chart3c.destroy();
+    //         makeChart3d();
+    //         chart3d.addSeries(dataGrowthNum[1][0]);
+    //         addLabel3d("Black");
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-14").waypoint(function(direction) {
-        if (direction === "down") {
-            chart3d.addSeries(dataGrowthNum[2][0]);
-            chart3d.addSeries(dataGrowthNum[3][0]);
-            addLabel3d("Hispanic");
-            addLabel3d("Asian");
-            chart3d.get("Hispanic").graph.animate({"stroke-width":3});
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-14").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         chart3d.addSeries(dataGrowthNum[2][0]);
+    //         chart3d.addSeries(dataGrowthNum[3][0]);
+    //         addLabel3d("Hispanic");
+    //         addLabel3d("Asian");
+    //         chart3d.get("Hispanic").graph.animate({"stroke-width":3});
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-15").waypoint(function(direction) {
-        if (direction === "down") {
-            $("#sticky-box-3").animate({opacity: 0},1000);
-        } else {
-            $("#sticky-box-3").animate({opacity: 1},1000);
-        }
-    }, {
-        offset: "100%"
-    });
+    // $("#scroll-text-15").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         $("#sticky-box-3").animate({opacity: 0},1000);
+    //     } else {
+    //         $("#sticky-box-3").animate({opacity: 1},1000);
+    //     }
+    // }, {
+    //     offset: "100%"
+    // });
 
-    $("#scroll-text-16").waypoint(function(direction) {
-        if (direction === "down") {
-            $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
-            chart4.get("Majority").points[0].update({dataLabels: labelstyle11});
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-16").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
+    //         chart4.get("Majority").points[0].update({dataLabels: labelstyle11});
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-17").waypoint(function(direction) {
-        if (direction === "down") {
-            chart4.addSeries(dataSwingBig[1][0]);
-            chart4.get("GenZ").points[0].update({dataLabels: labelstyle11});
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-17").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         chart4.addSeries(dataSwingBig[1][0]);
+    //         chart4.get("GenZ").points[0].update({dataLabels: labelstyle11});
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-18").waypoint(function(direction) {
-        if (direction === "down") {
-            $("#chart-wrapper-4").fadeTo(500, 0);
-            $("#chart-wrapper-5").fadeTo(500, 1, makeChart5a());
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-18").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         $("#chart-wrapper-4").fadeTo(500, 0);
+    //         $("#chart-wrapper-5").fadeTo(500, 1, makeChart5a());
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-19").waypoint(function(direction) {
-        if (direction === "down") {
-            makeChart5b();
-            chart5b.get("Majority").points[0].update({dataLabels: labelstyle12});
-            chart5b.get("GenZ").points[0].update({dataLabels: labelstyle13});
-        } else {}
-    }, {
-        offset: "50%"
-    });
+    // $("#scroll-text-19").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         makeChart5b();
+    //         chart5b.get("Majority").points[0].update({dataLabels: labelstyle12});
+    //         chart5b.get("GenZ").points[0].update({dataLabels: labelstyle13});
+    //     } else {}
+    // }, {
+    //     offset: "50%"
+    // });
 
-    $("#scroll-text-20").waypoint(function(direction) {
-        if (direction === "down") {
-            $("#sticky-box-4").animate({opacity: 0},1000);
-        } else {
-            $("#sticky-box-4").animate({opacity: 1},1000);
-        }
-    }, {
-        offset: "100%"
-    });
+    // $("#scroll-text-20").waypoint(function(direction) {
+    //     if (direction === "down") {
+    //         $("#sticky-box-4").animate({opacity: 0},1000);
+    //     } else {
+    //         $("#sticky-box-4").animate({opacity: 1},1000);
+    //     }
+    // }, {
+    //     offset: "100%"
+    // });
 
+    var labelstyle1_1 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{series.name}<br>{point.y:.1f}',
+        x:-20,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+    };
+
+    var labelstyle1_2 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{series.name}<br>{point.y:.1f}',
+        y:40,
+        x:-20,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+    };
+
+    var labelstyle1_3 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{series.name} {point.y:.1f}',
+        y: 17,
+        x:-32,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+    };
+
+        var labelstyle1_4 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{series.name}<br>{point.y:.1f}',
+        y: 110,
+        x:-20,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+    };
+
+    var labelstyle1_6 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{point.y:.1f}',
+        y: 40,
+        x:-15,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+    };
+
+    var labelstyle1_7 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{point.y:.1f}',
+        y: 17,
+        x:-15,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+    };
+
+        var labelstyle1_8 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{point.y:.1f}',
+        y: 110,
+        x:-15,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+    };
 
 
     var labelstyle ={
@@ -428,20 +524,15 @@ $(document).ready(function() {
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{point.x}<br>{point.y:.1f}%',
+        format: '{series.name}<br>{point.y:.1f}%',
         y: -10,
-        x:-10,
+        x:0,
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#F7DEBB',
         backgroundColor: '#fff',
         shape: 'callout',
-        style:{
-            fontSize: '11px',
-            fontWeight: '600',
-            color: '#D17A00',
-            textAlign: "center",
-        },
+        style:{fontSize: '11px',fontWeight: '600',color: '#D17A00',textAlign: "center",},
     };
 
     var labelstyle9 ={
@@ -529,18 +620,77 @@ $(document).ready(function() {
         chart1 = new Highcharts.Chart({
             chart: {
                 renderTo: 'chart-1',
+                type: 'area',
+            },
+            title: {text: null},
+            subtitle: {enabled: false},
+            xAxis: {
+                labels: {style:{fontSize: '12px'}},
+                tickPositions: [2001,2010,2016,2020],
+                max:2020,
+                plotBands: [{
+                    color: 'rgba(255,255,255,0.3)',
+                    from: 2018,
+                    to: 2020,
+                    zIndex: 5,
+                }],
+                plotLines: [{
+                    color: 'rgba(204, 214, 235,0.5)',
+                    value: 2016,
+                    width: 1,
+                    zIndex: 5,
+                  }]
+            },  
+            yAxis: {
+                title: {text: 'Percentage'},
+                endOnTick: false,
+                labels: {style:{fontSize: '12px'}},
+            },
+            credits: {enabled: false},
+            legend: {enabled: false},
+            tooltip: {enabled: false},
+            plotOptions: {
+                area: {
+                    stacking: 'normal',
+                    lineColor: '#666666',
+                    lineWidth: 1,
+                    marker: {enabled:false},
+                    zoneAxis: 'x',
+                    zones: [{
+                        value: "2018",
+                    },{
+                        value: "2020",
+                        
+                        opacity:0.1,
+                    }]
+                },
+                series:{
+                    pointStart: 2001,
+                    dataLabels: {enabled: false,},
+                    states: {hover: {enabled: false},inactive: {opacity: 1},},
+                },
+            },    
+            series: dataGrowthPct,
+        });
+    }
+
+
+    function makeChart2() {
+        chart2 = new Highcharts.Chart({
+            chart: {
+                renderTo: 'chart-2',
                 type: 'column',
             },
             title: {text: null},
             subtitle: {enabled: false},
             xAxis: {
+                title: {text: 'Age groups'},
                 categories: catNaturalized,
                 labels: {style:{fontSize: '12px'}}
             },  
             yAxis: {
-                title: {text: 'Percentage of eligible voters (in millions)'},
+                title: {text: null},
                 endOnTick: false,
-                max:50,
                 labels: {style:{fontSize: '12px'}}
             },
             credits: {enabled: false},
@@ -564,20 +714,21 @@ $(document).ready(function() {
         });
     }
 
-    function makeChart2() {
-        chart2 = new Highcharts.Chart({
+    function makeChart3() {
+        chart3 = new Highcharts.Chart({
             chart: {
-                renderTo: 'chart-2',
+                renderTo: 'chart-3',
                 type: 'bar',
             },
             title: {text: null},
             subtitle: {enabled: false},
             xAxis: {
-                categories: catLanguage,
+                title: {text: 'Age groups'},
+                categories: catNaturalized,
                 labels: {style:{fontSize: '12px'}}
             },  
             yAxis: {
-                title: {text: 'Percentage of eligible voters'},
+                title: {text: null},
                 endOnTick: false,
                 labels: {style:{fontSize: '12px'}}
             },
@@ -587,7 +738,7 @@ $(document).ready(function() {
             plotOptions: {
                 bar: {
                     stacking: 'normal',
-                    dataLabels: {enabled: false}
+                    dataLabels: labelstyle,
                 },
                 series:{
                     borderWidth: 0,
