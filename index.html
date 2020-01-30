@@ -45,6 +45,26 @@
   .invisible {
     opacity:0;
   }
+  .legend {
+    text-align: left;
+    font-size: 12px;
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    line-height: 20px;
+    color: #333;
+    background-color: rgba(256, 256, 256, 0.9);
+    padding:5px;
+  }
+  .legend i {
+    width: 12px;
+    height: 12px;
+    float: left;
+    margin:4px;
+  }
+  #legend-swing {opacity:0;}
+  #legend-latino {opacity:1;}
+    
 
 
 </style>
@@ -126,6 +146,20 @@
           <div class="chart-wrapper" id="chart-wrapper-4">
             <div class="chart-box" id="chart-4"></div>
             <div class="chart-title"></div>
+            <div class="legend" id="legend-latino">
+              <b>Percentage of</b><br><b>Latino voters</b><br>
+              <i style="background:#ffffb2;opacity:1;"></i>5% or less<br>
+              <i style="background:#fed976;opacity:1;"></i>5.1-10%<br>
+              <i style="background:#feb24c;opacity:1;"></i>10.1-15%<br>
+              <i style="background:#fd8d3c;opacity:1;"></i>15.1-20%<br>
+              <i style="background:#f03b20;opacity:1;"></i>20.1-25%<br>
+              <i style="background:#bd0026;opacity:1;"></i>>25%
+            </div>
+            <div class="legend" id="legend-swing">
+              <b>Winner in 2020</b><br>
+              <i style="background:#DE0100;opacity:1;"></i>Trump<br>
+              <i style="background:#031BBB;opacity:1;"></i>Clinton<br>
+            </div>
           </div>
         </div> 
         <div class="container text scroll-text" id="scroll-text-9">
@@ -137,8 +171,14 @@
         <div class="container text scroll-text" id="scroll-text-11">
           <div class="scroll-text-box">Something about Florida.</div>
         </div>
+        <div class="container text scroll-text" id="scroll-text-12">
+          <div class="scroll-text-box">Show only the 9 states.</div>
+        </div>
+        <div class="container text scroll-text" id="scroll-text-13">
+          <div class="scroll-text-box">Change color of the 9 states. Change the legend too.</div>
+        </div>
       </div> 
-      <div id="scroll-text-12"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>        
+      <div id="scroll-text-14"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>        
 
       <div class="scroll-area">
         <div class="chart-container sticky-box text-center" id="sticky-box-5">

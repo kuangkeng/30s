@@ -63,24 +63,10 @@ $(document).ready(function() {
         [4.42,4.54,4.62,4.70],
         [67.95,67.42,67.06,66.70],
     ];
-    
-    var dataSwingBig = [
-        [{name:"Majority",id:"Majority",data:[807.18,112.91,44.29],color:"#DE0100"}],
-        [{name:"Hispanic GenZ",id:"GenZ",data:[1041.55,384.03,103.74],color:"#FF9600"}],
-    ];
-    var catSwingBig = ["TX","FL","PA"];
 
-    var dataSwingTrump = [
-        {name:"Hispanic GenZ",id:"GenZ",data:[223.62,53.67,39.06],color:"#FF9600"},
-        {name:"Majority",id:"Majority",data:[91.23,10.70,22.75],color:"#DE0100"},
-    ];
-    var catSwingTrump = ["AZ","MI","WI"];
-
-    var dataSwingClinton = [
-        {name:"Hispanic GenZ",id:"GenZ",data:[93.50,77.32,5.26],color:"#FF9600"},
-        {name:"Majority",id:"Majority",data:[65.57,27.20,2.74],color:"#031BBB"},
-    ];
-    var catSwingClinton = ["NM","NV","NH"];
+    var dataStatesNon = ["AL","AK","AR","CA","CO","CT","DE","DC","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MN","MS","MO","MT","NE","NJ","NY","NC","ND","OH","OK","OR","RI","SC","SD","TN","UT","VT","VA","WA","WV","WY"];
+    var stateRed = ["TX","FL","PA","AZ","MI","WI"];
+    var stateBlue = ["NM","NV","NH"];
 
     $(".scroll-text").css("padding-bottom", height);
     $(".chart-container").css({'width':chartWidth,'height':chartHeight});
@@ -235,6 +221,32 @@ $(document).ready(function() {
 
     $("#scroll-text-12").waypoint(function(direction) {
         if (direction === "down") {
+            chart4.get("latinoMap").points[9].update({borderWidth: 0});
+            for (i=0; i < dataStatesNon.length; i += 1) {
+                chart4.get(dataStatesNon[i]).update({color:"#fff", dataLabels: labelstyle3},true,false);
+            }
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-13").waypoint(function(direction) {
+        if (direction === "down") {
+            for (i=0; i < stateRed.length; i += 1) {
+                chart4.get(stateRed[i]).update({color:"#DE0100", dataLabels: labelstyle4});
+            }
+            for (i=0; i < stateBlue.length; i += 1) {
+                chart4.get(stateBlue[i]).update({color:"#031BBB", dataLabels: labelstyle4});
+            }  
+            $("#legend-latino").fadeTo(500, 0);
+            $("#legend-swing").fadeTo(500, 1);
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-14").waypoint(function(direction) {
+        if (direction === "down") {
             $("#sticky-box-4").animate({opacity: 0},1000);
         } else {
             $("#sticky-box-4").animate({opacity: 1},1000);
@@ -242,62 +254,6 @@ $(document).ready(function() {
     }, {
         offset: "100%"
     });
-
-    // $("#scroll-text-10").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         chart3a.addSeries(dataGrowthNum2[1][0]);
-    //         addLabel3a("Hispanic");
-    //         chart3a.get("Hispanic").points[0].update({dataLabels: labelstyle5});
-    //         chart3a.get("Hispanic").points[16].update({dataLabels: labelstyle6});
-    //     } else {}
-    // }, {
-    //     offset: "50%"
-    // });
-
-    // $("#scroll-text-11").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         chart3a.destroy();
-    //         makeChart3b();
-    //     } else {}
-    // }, {
-    //     offset: "50%"
-    // });
-
-    // $("#scroll-text-12").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         chart3b.destroy();
-    //         makeChart3c();
-    //         chart3c.get("Hispanic").points[0].update({dataLabels: labelstyle7});
-    //         chart3c.get("Hispanic").points[16].update({dataLabels: labelstyle8});
-    //         chart3c.get("Others").points[8].update({dataLabels: labelstyle9});
-    //         chart3c.get("Hispanic").points[8].update({dataLabels: labelstyle10});
-    //     } else {}
-    // }, {
-    //     offset: "50%"
-    // });
-
-    // $("#scroll-text-13").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         chart3c.destroy();
-    //         makeChart3d();
-    //         chart3d.addSeries(dataGrowthNum[1][0]);
-    //         addLabel3d("Black");
-    //     } else {}
-    // }, {
-    //     offset: "50%"
-    // });
-
-    // $("#scroll-text-14").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         chart3d.addSeries(dataGrowthNum[2][0]);
-    //         chart3d.addSeries(dataGrowthNum[3][0]);
-    //         addLabel3d("Hispanic");
-    //         addLabel3d("Asian");
-    //         chart3d.get("Hispanic").graph.animate({"stroke-width":3});
-    //     } else {}
-    // }, {
-    //     offset: "50%"
-    // });
 
     // $("#scroll-text-15").waypoint(function(direction) {
     //     if (direction === "down") {
@@ -307,43 +263,6 @@ $(document).ready(function() {
     //     }
     // }, {
     //     offset: "100%"
-    // });
-
-    // $("#scroll-text-16").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
-    //         chart4.get("Majority").points[0].update({dataLabels: labelstyle11});
-    //     } else {}
-    // }, {
-    //     offset: "50%"
-    // });
-
-    // $("#scroll-text-17").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         chart4.addSeries(dataSwingBig[1][0]);
-    //         chart4.get("GenZ").points[0].update({dataLabels: labelstyle11});
-    //     } else {}
-    // }, {
-    //     offset: "50%"
-    // });
-
-    // $("#scroll-text-18").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         $("#chart-wrapper-4").fadeTo(500, 0);
-    //         $("#chart-wrapper-5").fadeTo(500, 1, makeChart5a());
-    //     } else {}
-    // }, {
-    //     offset: "50%"
-    // });
-
-    // $("#scroll-text-19").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         makeChart5b();
-    //         chart5b.get("Majority").points[0].update({dataLabels: labelstyle12});
-    //         chart5b.get("GenZ").points[0].update({dataLabels: labelstyle13});
-    //     } else {}
-    // }, {
-    //     offset: "50%"
     // });
 
     // $("#scroll-text-20").waypoint(function(direction) {
@@ -452,47 +371,9 @@ $(document).ready(function() {
         },
     };
 
-    var labelstyle3 ={
-        enabled: true,
-        allowOverlap: true,
-        useHTML: true,
-        format: '{point.x}<br>{point.y:.1f}mil',
-        y: 10,
-        x:15,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#B4D9EE',
-        backgroundColor: '#fff',
-        shape: 'callout',
-        verticalAlign: 'top',
-        style:{
-            fontSize: '11px',
-            fontWeight: '600',
-            color: '#0089BD',
-            textAlign: "center",
-        },
-    };
+    var labelstyle3 ={color: '#d3d3d3'};
+    var labelstyle4 ={color: '#fff'};
 
-    var labelstyle4 ={
-        enabled: true,
-        allowOverlap: true,
-        useHTML: true,
-        format: '{point.x}<br>{point.y:.1f}mil',
-        y: 10,
-        x:-10,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#B4D9EE',
-        backgroundColor: '#fff',
-        shape: 'callout',
-        verticalAlign: 'top',
-        style:{
-            fontSize: '11px',
-            fontWeight: '600',
-            color: '#0089BD',
-            textAlign: "center",
-        },
-    };
 
     var labelstyle5 ={
         enabled: true,
@@ -791,7 +672,6 @@ $(document).ready(function() {
                 renderTo: 'chart-4',
                 type: 'tilemap',
                 inverted: true,
-                // height: '80%'
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -831,7 +711,7 @@ $(document).ready(function() {
             },
             credits: {enabled: false},
             legend: {
-                enabled: true,
+                enabled: false,
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'bottom',
@@ -842,7 +722,7 @@ $(document).ready(function() {
                 series: {
                     dataLabels: {
                         enabled: true,
-                        format: '{point.hc-a2}',
+                        format: '{point.id}',
                         color: '#333',
                         style: {
                             textOutline: false
@@ -852,360 +732,362 @@ $(document).ready(function() {
             },   
             series: [{
                 // pointPadding: 0,
+                borderWidth: 0.5,
+                borderColor: "#d3d3d3",
                 name: 'latinoMap',
                 id: 'latinoMap',
                 data: [{
-                    'hc-a2': 'AL',
+                    'id': 'AL',
                     name: 'Alabama',
                     region: 'South',
                     x: 6,
                     y: 7,
                     value: 2.3
                 }, {
-                    'hc-a2': 'AK',
+                    'id': 'AK',
                     name: 'Alaska',
                     region: 'West',
                     x: 0,
                     y: 0,
                     value: 6.1
                 }, {
-                    'hc-a2': 'AZ',
+                    'id': 'AZ',
                     name: 'Arizona',
                     region: 'West',
                     x: 5,
                     y: 3,
                     value: 24.2
                 }, {
-                    'hc-a2': 'AR',
+                    'id': 'AR',
                     name: 'Arkansas',
                     region: 'South',
                     x: 5,
                     y: 6,
                     value: 4.0
                 }, {
-                    'hc-a2': 'CA',
+                    'id': 'CA',
                     name: 'California',
                     region: 'West',
                     x: 5,
                     y: 2,
                     value: 31.2
                 }, {
-                    'hc-a2': 'CO',
+                    'id': 'CO',
                     name: 'Colorado',
                     region: 'West',
                     x: 4,
                     y: 3,
                     value: 16.4
                 }, {
-                    'hc-a2': 'CT',
+                    'id': 'CT',
                     name: 'Connecticut',
                     region: 'Northeast',
                     x: 3,
                     y: 11,
                     value: 12.6
                 }, {
-                    'hc-a2': 'DE',
+                    'id': 'DE',
                     name: 'Delaware',
                     region: 'South',
                     x: 4,
                     y: 9,
                     value: 5.7
                 }, {
-                    'hc-a2': 'DC',
+                    'id': 'DC',
                     name: 'District of Columbia',
                     region: 'South',
                     x: 4,
                     y: 10,
                     value: 7.1
                 }, {
-                    'hc-a2': 'FL',
+                    'id': 'FL',
                     name: 'Florida',
                     region: 'South',
                     x: 8,
                     y: 8,
                     value: 20.7
                 }, {
-                    'hc-a2': 'GA',
+                    'id': 'GA',
                     name: 'Georgia',
                     region: 'South',
                     x: 7,
                     y: 8,
                     value: 5.3
                 }, {
-                    'hc-a2': 'HI',
+                    'id': 'HI',
                     name: 'Hawaii',
                     region: 'West',
                     x: 8,
                     y: 0,
                     value: 9.0
                 }, {
-                    'hc-a2': 'ID',
+                    'id': 'ID',
                     name: 'Idaho',
                     region: 'West',
                     x: 3,
                     y: 2,
                     value: 8.4
                 }, {
-                    'hc-a2': 'IL',
+                    'id': 'IL',
                     name: 'Illinois',
                     region: 'Midwest',
                     x: 3,
                     y: 6,
                     value: 12.0
                 }, {
-                    'hc-a2': 'IN',
+                    'id': 'IN',
                     name: 'Indiana',
                     region: 'Midwest',
                     x: 3,
                     y: 7,
                     value: 4.3
                 }, {
-                    'hc-a2': 'IA',
+                    'id': 'IA',
                     name: 'Iowa',
                     region: 'Midwest',
                     x: 3,
                     y: 5,
                     value: 3.6
                 }, {
-                    'hc-a2': 'KS',
+                    'id': 'KS',
                     name: 'Kansas',
                     region: 'Midwest',
                     x: 5,
                     y: 5,
                     value: 7.3
                 }, {
-                    'hc-a2': 'KY',
+                    'id': 'KY',
                     name: 'Kentucky',
                     region: 'South',
                     x: 4,
                     y: 6,
                     value: 1.7
                 }, {
-                    'hc-a2': 'LA',
+                    'id': 'LA',
                     name: 'Louisiana',
                     region: 'South',
                     x: 6,
                     y: 5,
                     value: 3.1
                 }, {
-                    'hc-a2': 'ME',
+                    'id': 'ME',
                     name: 'Maine',
                     region: 'Northeast',
                     x: 0,
                     y: 11,
                     value: 1.5
                 }, {
-                    'hc-a2': 'MD',
+                    'id': 'MD',
                     name: 'Maryland',
                     region: 'South',
                     x: 4,
                     y: 8,
                     value: 6.0
                 }, {
-                    'hc-a2': 'MA',
+                    'id': 'MA',
                     name: 'Massachusetts',
                     region: 'Northeast',
                     x: 2,
                     y: 10,
                     value: 9.2
                 }, {
-                    'hc-a2': 'MI',
+                    'id': 'MI',
                     name: 'Michigan',
                     region: 'Midwest',
                     x: 2,
                     y: 7,
                     value: 3.6
                 }, {
-                    'hc-a2': 'MN',
+                    'id': 'MN',
                     name: 'Minnesota',
                     region: 'Midwest',
                     x: 2,
                     y: 4,
                     value: 3.3
                 }, {
-                    'hc-a2': 'MS',
+                    'id': 'MS',
                     name: 'Mississippi',
                     region: 'South',
                     x: 6,
                     y: 6,
                     value: 1.7
                 }, {
-                    'hc-a2': 'MO',
+                    'id': 'MO',
                     name: 'Missouri',
                     region: 'Midwest',
                     x: 4,
                     y: 5,
                     value: 2.8
                 }, {
-                    'hc-a2': 'MT',
+                    'id': 'MT',
                     name: 'Montana',
                     region: 'West',
                     x: 2,
                     y: 2,
                     value: 3.5
                 }, {
-                    'hc-a2': 'NE',
+                    'id': 'NE',
                     name: 'Nebraska',
                     region: 'Midwest',
                     x: 4,
                     y: 4,
                     value: 6.8
                 }, {
-                    'hc-a2': 'NV',
+                    'id': 'NV',
                     name: 'Nevada',
                     region: 'West',
                     x: 4,
                     y: 2,
                     value: 20.2
                 }, {
-                    'hc-a2': 'NH',
+                    'id': 'NH',
                     name: 'New Hampshire',
                     region: 'Northeast',
                     x: 1,
                     y: 11,
                     value: 2.9
                 }, {
-                    'hc-a2': 'NJ',
+                    'id': 'NJ',
                     name: 'New Jersey',
                     region: 'Northeast',
                     x: 3,
                     y: 10,
                     value: 15.5
                 }, {
-                    'hc-a2': 'NM',
+                    'id': 'NM',
                     name: 'New Mexico',
                     region: 'West',
                     x: 6,
                     y: 3,
                     value: 43.3
                 }, {
-                    'hc-a2': 'NY',
+                    'id': 'NY',
                     name: 'New York',
                     region: 'Northeast',
                     x: 2,
                     y: 9,
                     value: 15.0
                 }, {
-                    'hc-a2': 'NC',
+                    'id': 'NC',
                     name: 'North Carolina',
                     region: 'South',
                     x: 5,
                     y: 9,
                     value: 4.7
                 }, {
-                    'hc-a2': 'ND',
+                    'id': 'ND',
                     name: 'North Dakota',
                     region: 'Midwest',
                     x: 2,
                     y: 3,
                     value: 3.1
                 }, {
-                    'hc-a2': 'OH',
+                    'id': 'OH',
                     name: 'Ohio',
                     region: 'Midwest',
                     x: 3,
                     y: 8,
                     value: 2.8
                 }, {
-                    'hc-a2': 'OK',
+                    'id': 'OK',
                     name: 'Oklahoma',
                     region: 'South',
                     x: 6,
                     y: 4,
                     value: 6.4
                 }, {
-                    'hc-a2': 'OR',
+                    'id': 'OR',
                     name: 'Oregon',
                     region: 'West',
                     x: 4,
                     y: 1,
                     value: 8.0
                 }, {
-                    'hc-a2': 'PA',
+                    'id': 'PA',
                     name: 'Pennsylvania',
                     region: 'Northeast',
                     x: 3,
                     y: 9,
                     value: 5.5
                 }, {
-                    'hc-a2': 'RI',
+                    'id': 'RI',
                     name: 'Rhode Island',
                     region: 'Northeast',
                     x: 2,
                     y: 11,
                     value: 11.7
                 }, {
-                    'hc-a2': 'SC',
+                    'id': 'SC',
                     name: 'South Carolina',
                     region: 'South',
                     x: 6,
                     y: 8,
                     value: 3.2
                 }, {
-                    'hc-a2': 'SD',
+                    'id': 'SD',
                     name: 'South Dakota',
                     region: 'Midwest',
                     x: 3,
                     y: 4,
                     value: 2.8
                 }, {
-                    'hc-a2': 'TN',
+                    'id': 'TN',
                     name: 'Tennessee',
                     region: 'South',
                     x: 5,
                     y: 7,
                     value: 2.6
                 }, {
-                    'hc-a2': 'TX',
+                    'id': 'TX',
                     name: 'Texas',
                     region: 'South',
                     x: 7,
                     y: 4,
                     value: 31.0
                 }, {
-                    'hc-a2': 'UT',
+                    'id': 'UT',
                     name: 'Utah',
                     region: 'West',
                     x: 5,
                     y: 4,
                     value: 9.4
                 }, {
-                    'hc-a2': 'VT',
+                    'id': 'VT',
                     name: 'Vermont',
                     region: 'Northeast',
                     x: 1,
                     y: 10,
                     value: 1.6
                 }, {
-                    'hc-a2': 'VA',
+                    'id': 'VA',
                     name: 'Virginia',
                     region: 'South',
                     x: 5,
                     y: 8,
                     value: 5.7
                 }, {
-                    'hc-a2': 'WA',
+                    'id': 'WA',
                     name: 'Washington',
                     region: 'West',
                     x: 2,
                     y: 1,
                     value: 8.0
                 }, {
-                    'hc-a2': 'WV',
+                    'id': 'WV',
                     name: 'West Virginia',
                     region: 'South',
                     x: 4,
                     y: 7,
                     value: 1.1
                 }, {
-                    'hc-a2': 'WI',
+                    'id': 'WI',
                     name: 'Wisconsin',
                     region: 'Midwest',
                     x: 2,
                     y: 5,
                     value: 4.3
                 }, {
-                    'hc-a2': 'WY',
+                    'id': 'WY',
                     name: 'Wyoming',
                     region: 'West',
                     x: 3,
