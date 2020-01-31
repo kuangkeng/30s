@@ -8,7 +8,7 @@ $(document).ready(function() {
         chartHeight = Math.floor(height);
 
 
-    var chart1, chart1b, chart2, chart3, chart4; 
+    var chart1, chart1b, chart2, chart3, chart4, chart5; 
     var clicked2, clicked3, clicked4, clicked5;
     var chart1Loaded, chart3Loaded, chart4Loaded;
 
@@ -74,12 +74,61 @@ $(document).ready(function() {
         {name:"National",id:"National",data:[8.5,25,22.6,24.4,15.1,4.4],color:"#0089BD"},  
     ];
 
+    var dataTurnout = [
+        {name:"National (presidential)",id:"National-presidential",color:"#78BBE0",
+            data :[
+                [Date.UTC(1996,0,1),58.4],
+                [Date.UTC(2000,0,1),59.5],
+                [Date.UTC(2004,0,1),63.8],
+                [Date.UTC(2008,0,1),63.6],
+                [Date.UTC(2012,0,1),61.8],
+                [Date.UTC(2016,0,1),61.4],
+                ]
+        },
+        {name:"National (midterm)",id:"National-midterm",color:"#0089BD",
+            data :[
+                [Date.UTC(1994,0,1),48.4],
+                [Date.UTC(1998,0,1),45.3],
+                [Date.UTC(2002,0,1),46.1],
+                [Date.UTC(2006,0,1),47.8],
+                [Date.UTC(2010,0,1),45.5],
+                [Date.UTC(2014,0,1),41.9],
+                [Date.UTC(2018,0,1),null],
+                ]
+        },
+
+    ];
+    var dataTurnoutLatino = [
+        {name:"Latino (presidential)",id:"Latino-presidential",color:"#F7DEBB",
+        data :[
+            [Date.UTC(1996,0,1),44.0],
+            [Date.UTC(2000,0,1),44.3],
+            [Date.UTC(2004,0,1),47.2],
+            [Date.UTC(2008,0,1),49.9],
+            [Date.UTC(2012,0,1),48.0],
+            [Date.UTC(2016,0,1),47.6],
+            ]
+    },
+    {name:"Latino (midterm)",id:"Latino-midterm",color:"#FF9600",
+        data :[
+            [Date.UTC(1994,0,1),34.4],
+            [Date.UTC(1998,0,1),32.8],
+            [Date.UTC(2002,0,1),30.4],
+            [Date.UTC(2006,0,1),32.3],
+            [Date.UTC(2010,0,1),31.2],
+            [Date.UTC(2014,0,1),27.0],
+            [Date.UTC(2018,0,1),null],
+            ]
+    },
+    ];
+
     $(".scroll-text").css("padding-bottom", height);
     $(".chart-container").css({'width':chartWidth,'height':chartHeight});
 
-    var stickyBox1 = new Waypoint.Sticky({element: $('#sticky-box-1')})
-    var stickyBox2 = new Waypoint.Sticky({element: $('#sticky-box-2')})
-    var stickyBox4 = new Waypoint.Sticky({element: $('#sticky-box-4')})  
+    var stickyBox1 = new Waypoint.Sticky({element: $('#sticky-box-1')});
+    var stickyBox2 = new Waypoint.Sticky({element: $('#sticky-box-2')});
+    var stickyBox4 = new Waypoint.Sticky({element: $('#sticky-box-4')}); 
+    var stickyBox5 = new Waypoint.Sticky({element: $('#sticky-box-5')});  
     
     $("#scroll-text-1").waypoint(function(direction) {
         if (direction === "down") {
@@ -268,25 +317,47 @@ $(document).ready(function() {
         offset: "100%"
     });
 
-    // $("#scroll-text-15").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         $("#sticky-box-3").animate({opacity: 0},1000);
-    //     } else {
-    //         $("#sticky-box-3").animate({opacity: 1},1000);
-    //     }
-    // }, {
-    //     offset: "100%"
-    // });
+    $("#scroll-text-15").waypoint(function(direction) {
+        if (direction === "down") {
+            $("#chart-wrapper-5").fadeTo(500, 1, makeChart5());
+            chart5.get("National-presidential").points[5].update({dataLabels: labelstyle5});
+            chart5.get("National-midterm").points[5].update({dataLabels: labelstyle5});
+        } else {}
+    }, {
+        offset: "50%"
+    });
 
-    // $("#scroll-text-20").waypoint(function(direction) {
-    //     if (direction === "down") {
-    //         $("#sticky-box-4").animate({opacity: 0},1000);
-    //     } else {
-    //         $("#sticky-box-4").animate({opacity: 1},1000);
-    //     }
-    // }, {
-    //     offset: "100%"
-    // });
+    $("#scroll-text-16").waypoint(function(direction) {
+        if (direction === "down") {
+            chart5.addSeries(dataTurnoutLatino[0]);
+            chart5.addSeries(dataTurnoutLatino[1]);
+            chart5.get("Latino-presidential").points[5].update({dataLabels: labelstyle5});
+            chart5.get("Latino-midterm").points[5].update({dataLabels: labelstyle5});
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-17").waypoint(function(direction) {
+        if (direction === "down") {
+            chart5.get("National-midterm").points[5].update({dataLabels: {enabled: false}});
+            chart5.get("Latino-midterm").points[5].update({dataLabels: {enabled: false}});
+            chart5.get("National-midterm").points[6].update({y:53.4, dataLabels: labelstyle6});
+            chart5.get("Latino-midterm").points[6].update({y:40.4,dataLabels: labelstyle6});
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-18").waypoint(function(direction) {
+        if (direction === "down") {
+            $("#sticky-box-5").animate({opacity: 0},1000);
+        } else {
+            $("#sticky-box-5").animate({opacity: 1},1000);
+        }
+    }, {
+        offset: "100%"
+    });
 
     var labelstyle1_1 ={
         enabled: true,
@@ -392,18 +463,13 @@ $(document).ready(function() {
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{point.y:.1f}mil',
-        y: -10,
-        x:15,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#F7DEBB',
-        backgroundColor: '#fff',
-        shape: 'callout',
+        format: '{series.name}<br>{point.y}%',
+        x:20,
         style:{
-            fontSize: '11px',
+            fontSize: '12px',
             fontWeight: '600',
-            color: '#D17A00',
+            color: '#333',
+            textOutline: false,
             textAlign: "center",
         },
     };
@@ -412,117 +478,14 @@ $(document).ready(function() {
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{point.y:.1f}mil',
-        y: -10,
-        x:-10,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#F7DEBB',
-        backgroundColor: '#fff',
-        shape: 'callout',
+        format: '{series.name}<br>{point.y}%',
+        x:-20,
         style:{
-            fontSize: '11px',
+            fontSize: '12px',
             fontWeight: '600',
-            color: '#D17A00',
-            textAlign: "center",
-        },
-    };
-
-    var labelstyle7 ={
-        enabled: true,
-        allowOverlap: true,
-        useHTML: true,
-        format: '{point.x}<br>{point.y:.1f}%',
-        y: -10,
-        x:15,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#F7DEBB',
-        backgroundColor: '#fff',
-        shape: 'callout',
-        style:{
-            fontSize: '11px',
-            fontWeight: '600',
-            color: '#D17A00',
-            textAlign: "center",
-        },
-    };
-
-    var labelstyle8 ={
-        enabled: true,
-        allowOverlap: true,
-        useHTML: true,
-        format: '{series.name}<br>{point.y:.1f}%',
-        y: -10,
-        x:0,
-        borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#F7DEBB',
-        backgroundColor: '#fff',
-        shape: 'callout',
-        style:{fontSize: '11px',fontWeight: '600',color: '#D17A00',textAlign: "center",},
-    };
-
-    var labelstyle9 ={
-        enabled: true,
-        allowOverlap: true,
-        format: '{series.name}',
-        y: 200,
-        style:{
-            fontSize: '12px',
-            fontWeight: 'normal',
             color: '#333',
             textOutline: false,
-        },
-    };
-
-    var labelstyle10 ={
-        enabled: true,
-        allowOverlap: true,
-        format: '{series.name}',
-        y: 25,
-        style:{
-            fontSize: '12px',
-            fontWeight: 'normal',
-            color: '#333',
-            textOutline: false,
-        },
-    };
-
-    var labelstyle11 ={
-        enabled: true,
-        allowOverlap: true,
-        format: '{series.name}',
-        inside: true,
-        style:{
-            fontSize: '12px',
-            fontWeight: '400',
-            color: '#fff',
-            textOutline: false,
-        },
-    };
-
-    var labelstyle12 ={
-        enabled: true,
-        allowOverlap: true,
-        format: '{series.name}',
-        style:{
-            fontSize: '10px',
-            fontWeight: '200',
-            color: '#333',
-            textOutline: false,
-        },
-    };
-
-    var labelstyle13 ={
-        enabled: true,
-        allowOverlap: true,
-        format: 'GenZ<br>Hispanic',
-        style:{
-            fontSize: '10px',
-            fontWeight: '200',
-            color: '#333',
-            textOutline: false,
+            textAlign: "right",
         },
     };
 
@@ -1166,118 +1129,41 @@ $(document).ready(function() {
         });
     }
 
-    function makeChart() {
-        chart4 = new Highcharts.Chart({
+    function makeChart5() {
+        chart5 = new Highcharts.Chart({
             chart: {
-                renderTo: 'chart-4',
-                type: 'bar',
-                height: '280',
+                renderTo: 'chart-5',
+                type: 'line',
+                marginRight: 100,
             },
             title: {text: null},
             subtitle: {enabled: false},
             xAxis: {
-                categories: catSwingBig,
-                labels: {style:{fontSize: '12px'}}
+                type: 'datetime',
+                dateTimeLabelFormats: {year: '%Y'},
+                tickInterval: 24 * 3600 * 1000 * 365 * 2,
+                showLastLabel: true,          
+                labels: {style:{fontSize: '12px'}},
             },  
             yAxis: {
-                title: {text: 'No. of voters (thousands)'},
+                title: {text: null},
                 endOnTick: false,
                 labels: {style:{fontSize: '12px'}},
-                max:1000,
-                tickPositions: [0, 500, 1000],
             },
             credits: {enabled: false},
             legend: {enabled: false},
             tooltip: {enabled: false},
             plotOptions: {
-                bar: {
-                    dataLabels: {enabled: false}
-                },
                 series:{
-                    borderWidth: 0,
-                    groupPadding: 0.1,
-                    pointPadding: 0,
+                    dataLabels: {enabled: false},
+                    marker: {enabled: false},
                     states: {hover: {enabled: false},inactive: {opacity: 1},},
                 },
             },    
-            series: dataSwingBig[0]
+            series: dataTurnout,
         });
     }
 
-    function makeChart5a() {
-        chart5a = new Highcharts.Chart({
-            chart: {
-                renderTo: 'chart-5a',
-                type: 'bar',
-                height: '280',
-            },
-            title: {text: null},
-            subtitle: {enabled: false},
-            xAxis: {
-                categories: catSwingTrump,
-                labels: {style:{fontSize: '12px'}}
-            },  
-            yAxis: {
-                title: {text: 'No. of voters (thousands)'},
-                endOnTick: false,
-                labels: {style:{fontSize: '12px'}},
-                max:250,
-                tickPositions: [0, 100, 200],
-            },
-            credits: {enabled: false},
-            legend: {enabled: false},
-            tooltip: {enabled: false},
-            plotOptions: {
-                bar: {
-                    dataLabels: {enabled: false}
-                },
-                series:{
-                    borderWidth: 0,
-                    groupPadding: 0.1,
-                    pointPadding: 0,
-                    states: {hover: {enabled: false},inactive: {opacity: 1},},
-                },
-            },    
-            series: dataSwingTrump
-        });
-    }
-    function makeChart5b() {
-        chart5b = new Highcharts.Chart({
-            chart: {
-                renderTo: 'chart-5b',
-                type: 'bar',
-                height: '280',
-            },
-            title: {text: null},
-            subtitle: {enabled: false},
-            xAxis: {
-                categories: catSwingClinton,
-                labels: {style:{fontSize: '12px'}},
-            },  
-            yAxis: {
-                title: {text: 'No. of voters (thousands)'},
-                endOnTick: false,
-                labels: {style:{fontSize: '12px'}},
-                max:250,
-                tickPositions: [0, 100, 200],
-            },
-            credits: {enabled: false},
-            legend: {enabled: false},
-            tooltip: {enabled: false},
-            plotOptions: {
-                bar: {
-                    dataLabels: {enabled: false}
-                },
-                series:{
-                    borderWidth: 0,
-                    groupPadding: 0.1,
-                    pointPadding: 0,
-                    states: {hover: {enabled: false},inactive: {opacity: 1},},
-                },
-            },    
-            series: dataSwingClinton
-        });
-    }
     
    
 });     
