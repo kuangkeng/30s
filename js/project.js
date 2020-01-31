@@ -8,16 +8,16 @@ $(document).ready(function() {
         chartHeight = Math.floor(height);
 
 
-    var chart1a, chart1b, chart2, chart3a, chart3b, chart3c, chart3d, chart4; 
+    var chart1, chart1b, chart2, chart3, chart4; 
     var clicked2, clicked3, clicked4, clicked5;
     var chart1Loaded, chart3Loaded, chart4Loaded;
 
     var labels = {};
     var dataNaturalized = [
         {name:"18-23",y:95.1,color:"#FF9600"},
-        {name:"24-39",y:0},
-        {name:"40-55",y:0},
-        {name:"56-74",y:0},
+        {name:"24-39",y:0,color:"#F7DEBB"},
+        {name:"40-55",y:0,color:"#F7DEBB"},
+        {name:"56-74",y:0,color:"#F7DEBB"},
     ]; 
     var catNaturalized = [];
     for (var i = 0; i < dataNaturalized.length; i++){
@@ -68,13 +68,18 @@ $(document).ready(function() {
     var stateRed = ["TX","FL","PA","AZ","MI","WI"];
     var stateBlue = ["NM","NV","NH"];
 
+    var catAge = ["16-20","21-35","36-50","51-65","66-80","81-100"];
+    var dataAge = [
+        {name:"Latino",id:"Latino",data:[-14.1,-33.6,-23.9,-17.9,-8.2,-2.3],color:"#FF9600"},      
+        {name:"National",id:"National",data:[8.5,25,22.6,24.4,15.1,4.4],color:"#0089BD"},  
+    ];
+
     $(".scroll-text").css("padding-bottom", height);
     $(".chart-container").css({'width':chartWidth,'height':chartHeight});
 
     var stickyBox1 = new Waypoint.Sticky({element: $('#sticky-box-1')})
     var stickyBox2 = new Waypoint.Sticky({element: $('#sticky-box-2')})
-    // var stickyBox3 = new Waypoint.Sticky({element: $('#sticky-box-3')})  
-    var stickyBox3 = new Waypoint.Sticky({element: $('#sticky-box-4')})  
+    var stickyBox4 = new Waypoint.Sticky({element: $('#sticky-box-4')})  
     
     $("#scroll-text-1").waypoint(function(direction) {
         if (direction === "down") {
@@ -147,6 +152,14 @@ $(document).ready(function() {
         }
     }, {
         offset: "100%"
+    });
+
+    $("#sticky-box-1b").waypoint(function(direction) {
+        if (direction === "down") {
+            $("#chart-wrapper-1b").fadeTo(500, 1, makeChart1b());
+        } else {}
+    }, {
+        offset: "50%"
     });
 
     $("#scroll-text-5").waypoint(function(direction) {
@@ -589,6 +602,62 @@ $(document).ready(function() {
         });
     }
 
+    function makeChart1b() {
+        chart1b = new Highcharts.Chart({
+            chart: {
+                renderTo: 'chart-1b',
+                type: 'bar',
+            },
+            title: {text: null},
+            subtitle: {enabled: false},
+            xAxis: [{
+                title: {text: 'Age groups'},
+                categories: catAge,
+                reversed: false,
+                labels: {
+                    step: 1
+                },
+            }, { // mirror axis on right side
+                opposite: true,
+                reversed: false,
+                categories: catAge,
+                linkedTo: 0,
+                labels: {
+                    step: 1
+                },
+            }], 
+            yAxis: {
+                title: {text: null},
+                labels: {
+                    formatter: function () {
+                        return Math.abs(this.value) + '%';
+                    },
+                    style:{fontSize: '12px'}
+                },
+                max:40,
+                min:-40,
+            },
+            credits: {enabled: false},
+            legend: {enabled: true},
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' +
+                        'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 1) + '%';
+                }
+            },
+            plotOptions: {
+                series:{
+                    stacking: 'normal',
+                    borderWidth: 0,
+                    groupPadding: 0.05,
+                    pointPadding: 0,
+                    dataLabels: {enabled: false,},
+                    states: {hover: {enabled: false},inactive: {opacity: 1},},
+                },
+            },    
+            series: dataAge,
+        });
+    }
 
     function makeChart2() {
         chart2 = new Highcharts.Chart({
@@ -623,7 +692,6 @@ $(document).ready(function() {
             series: [{
                 name:"naturalizedChart",
                 id:"naturalizedChart",
-                color:"#0089BD",
                 data: dataNaturalized
             }],
         });
@@ -1096,126 +1164,6 @@ $(document).ready(function() {
                 }]
             }]
         });
-    }
-
-    function makeChart3b() {
-        chart3b = new Highcharts.Chart({
-            chart: {
-                height: 200,
-                renderTo: 'chart-3',
-                type: 'bar',
-                className: 'is-bottom',
-            },
-            title: {text: null},
-            subtitle: {enabled: false},
-            xAxis: {
-                categories: catGrowthRate,
-                labels: {style:{fontSize: '12px'}},
-            },  
-            yAxis: {
-                title: {text: 'Growth rate'},
-                endOnTick: false,
-                labels: {style:{fontSize: '12px'}}
-            },
-            credits: {enabled: false},
-            legend: {enabled: false},
-            tooltip: {enabled: false},
-            plotOptions: {
-                series:{
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.y:.1f}%',
-                        style:{
-                            fontSize: '14px',
-                            fontWeight: '600',
-                            color: '#333',
-                            textOutline: false,
-                        },
-                    },
-                    borderWidth: 0,
-                    groupPadding: 0.05,
-                    pointPadding: 0,
-                    stickyTracking: false,
-                },
-            },    
-            series: [{
-                name:"growthRateChart",
-                id:"growthRateChart",
-                color:"#0089BD",
-                data: dataGrowthRate
-            }],
-        });
-    }
-
-    function makeChart3c() {
-        chart3c = new Highcharts.Chart({
-            chart: {
-                renderTo: 'chart-3',
-                type: 'area',
-            },
-            title: {text: null},
-            subtitle: {enabled: false},
-            xAxis: {
-                labels: {style:{fontSize: '12px'}},
-                tickPositions: [2005, 2010, 2015],
-            },  
-            yAxis: {
-                title: {text: 'Share of total voters'},
-                endOnTick: false,
-                labels: {style:{fontSize: '12px'}}
-            },
-            credits: {enabled: false},
-            legend: {enabled: false},
-            tooltip: {enabled: false},
-            plotOptions: {
-                area: {
-                    stacking: 'normal',
-                    lineColor: '#666666',
-                    lineWidth: 1,
-                    marker: {enabled:false}
-                },
-                series:{
-                    pointStart: 2001,
-                    dataLabels: {enabled: false,},
-                },
-            },    
-            series: dataGrowthPct,
-        });
-    }
-
-    function makeChart3d() {
-        chart3d = new Highcharts.Chart({
-            chart: {
-                renderTo: 'chart-3',
-                type: 'line',
-                marginRight: 70
-            },
-            title: {text: null},
-            subtitle: {enabled: false},
-            xAxis: {
-                endOnTick: false,
-                labels: {style:{fontSize: '12px'}},
-                tickPositions: [2005, 2010, 2015],
-            },  
-            yAxis: {
-                title: {text: 'Number of eligible voters'},
-                endOnTick: true,
-                labels: {style:{fontSize: '12px'}},
-                min: 0,
-            },
-            credits: {enabled: false},
-            legend: {enabled: false},
-            tooltip: {enabled: true},
-            plotOptions: {
-                series:{
-                    dataLabels: {enabled: false},
-                    pointStart: 2001,
-                    marker: {enabled: false},
-                },
-            },    
-            series: dataGrowthNum[0]
-        });
-        addLabel3d('White');
     }
 
     function makeChart() {

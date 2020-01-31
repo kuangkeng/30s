@@ -25,6 +25,7 @@
   .chart-wrapper {position:absolute;bottom:5%;width: 100%;opacity:0;}
   .chart-box {margin: 0 auto;}
   #chart-1 {height: 400px; max-width: 600px;}
+  #chart-1b {height: 350px; max-width: 500px;}
   #chart-2 {height: 350px; max-width: 300px;}
   #chart-3 {max-width: 600px; height: 300px;}
   #chart-4 {height: 500px;}
@@ -32,18 +33,10 @@
   .scroll-area {position:relative;}
   .scroll-text{position:relative;z-index:9!important;pointer-events: none;color: #333;font-weight: 500;-webkit-font-smoothing: antialiased;}
   .scroll-text-box {padding:10px 15px;background-color: rgba(255,255,255,0.9);border-radius: 5px;}
-  .is-bottom {
-    position:absolute !important;
-    top: auto;
-    bottom:10%;
-  }
   .stuck {
     position: fixed;
     top: 0;
     width: 100%;
-  }
-  .invisible {
-    opacity:0;
   }
   .legend {
     text-align: left;
@@ -65,15 +58,13 @@
   #legend-swing {opacity:0;}
   #legend-latino {opacity:1;}
     
-
-
 </style>
 </head>
 <body class="interactive">
  <!-- ### example of header with a cover image -->
  <header class="header cover">
     <div class="container text">
-      <h1 id="title">Sample title: The Amazon used to be a hedge against climate change</h1>
+      <h1 id="title">Every 30 seconds, a young Latino turns 18. Their votes count more than ever.</h1>
       <div class="teaser">
         <p>Sample subtitle: The world's greatest forest used to absorb greenhouse gases. Now, it may be emitting them.</p>
       </div>
@@ -107,10 +98,16 @@
           <div class="scroll-text-box">It is projected that this trend will continue in the 2020 presidential election with Latinos making up a larger share of the electorate.</div>
         </div>
       </div>
+      <div id="scroll-text-4"><p>The defining characteristic of Latinos is their youth: More than 60 percent of the nearly 60 million Latinos in the US are under 35 years old. MORE DESCRIPTION. About 4 million Latinos will have turned 18 since the 2016 presidential election, according to Maria Teresa Kumar, the CEO of political-advocacy group Voto Latino.</p></div>
       
-      <div id="scroll-text-4"><p>EXPLAIN GET-OUT-THE-VOTE EFFORTS. And there are indications Latinos may turn out in unprecedented numbers in November. Latinos voted in record-breaking numbers in the 2018 midterm election. They were fueled by LIST SOME REASONS, according to EXPERT. That trend may well continue this fall. 
-      </p></div>
-      
+      <div class="sticky-box text-center" id="sticky-box-1b">
+        <div id="chart-wrapper-1b">
+          <div class="chart-box" id="chart-1b"></div>
+          <div class="chart-title"></div>
+        </div>
+      </div>
+
+      <p>EXPLAIN GET-OUT-THE-VOTE EFFORTS. And there are indications Latinos may turn out in unprecedented numbers in November. Latinos voted in record-breaking numbers in the 2018 midterm election. They were fueled by LIST SOME REASONS, according to EXPERT. That trend may well continue this fall.</p>
       <p>Over the next year, The World will report on the young Latino electorate, including the issues, influences, concerns and challenges driving decision-making and turnout among young Latino voters across the United States. The project is a partnership with NAME EVERYONE INVOLVED. Each week, we’ll bring you stories of Latino youth from across the US — and explore what they care about as the election draws near.</p>
       <p>So, who are the Latino youth reshaping the US electoral landscape?</p>
       
@@ -179,7 +176,8 @@
         </div>
       </div> 
       <div id="scroll-text-14"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>        
-
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <div class="scroll-area">
         <div class="chart-container sticky-box text-center" id="sticky-box-5">
           <div class="chart-wrapper" id="chart-wrapper-5">
