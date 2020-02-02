@@ -2,16 +2,11 @@ $(document).ready(function() {
     var width = (window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth);
     var height = (window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight);
     var $scrollArea = $('.scroll-area'),
-        bottomSpace = Math.floor(height*0.07),
         chartWidth = $scrollArea.width(),
-        chartMargin = 0 - (chartWidth/2),
         chartHeight = Math.floor(height);
 
-
     var chart1, chart1b, chart2, chart3, chart4, chart5; 
-    var clicked2, clicked3, clicked4, clicked5;
-    var chart1Loaded, chart3Loaded, chart4Loaded;
-
+    var chart1Loaded, chart1bLoaded, chart2Loaded, chart3Loaded, chart4Loaded, chart5Loaded;
     var labels = {};
     var dataNaturalized = [
         {name:"18-23",y:95.1,color:"#FF9600"},
@@ -28,27 +23,6 @@ $(document).ready(function() {
         {name:"Spanish", id:"Spanish", data:[61,62.3,69.2,73.5],color:"#F7DEBB"},
         {name:"English", id:"English", data:[38.6,37.2,30.4,25.9],color:"#FF9600"},
     ];
-
-    var dataGrowthNum = [
-        [{name:"White", id:"White", data:[12.84,13.12,13.27,13.42,13.45,15.39,15.44,15.65,15.56,15.00,15.07,15.00,14.88,14.65,14.38,14.17,13.95],color:"#0089BD"}],
-        [{name:"Black", id:"Black", data:[2.71,2.71,2.82,2.86,2.93,3.44,3.53,3.63,3.72,3.75,3.85,3.90,3.91,3.88,3.79,3.71,3.64],color:"#23C763"}],
-        [{name:"Hispanic", id:"Hispanic", data:[2.43,2.52,2.61,2.66,2.58,2.97,3.08,3.25,3.48,4.01,4.32,4.51,4.67,4.75,4.86,4.91,5.01],color:"#FF9600"}],
-        [{name:"Asian", id:"Asian", data:[0.50,0.53,0.61,0.62,0.65,0.78,0.77,0.77,0.76,0.90,0.88,0.91,0.93,0.96,0.99,0.99,1.03],color:"#E0B500"}],
-    ];
-
-    var dataGrowthNum2 = [
-        [{name:"Total",id:"Total",data:[188.71,191.13,193.02,195.32,196.95,206.33,208.20,210.70,213.07,214.97,217.54,220.11,222.49,224.96,227.23,229.01,231.61],color:"#0089BD"}],
-        [{name:"Hispanic",id:"Hispanic",data:[14.76,15.40,15.95,16.57,16.84,17.98,18.48,19.35,20.08,21.51,22.63,23.63,24.44,25.49,26.59,27.35,28.86],color:"#FF9600"}],
-    ];
-
-    var dataGrowthRate = [
-        {name:"Total",id:"Total",y:22.73,color:"#0089BD"},
-        {name:"Hispanic",id:"Hispanic",y:95.46,color:"#FF9600"},
-    ];
-    var catGrowthRate = [];
-    for (var i = 0; i < dataGrowthRate.length; i++){
-        catGrowthRate.push(dataGrowthRate[i].name);
-    }
 
     var dataGrowthPct = [
         {name:"Latino",id:"Latino",data:[7.82,8.06,8.26,8.49,8.55,8.71,8.87,9.18,9.42,10.01,10.40,10.74,10.98,11.33,11.70,11.94,null,null,null,null],color:"#FF9600"},      
@@ -75,7 +49,7 @@ $(document).ready(function() {
     ];
 
     var dataTurnout = [
-        {name:"National (presidential)",id:"National-presidential",color:"#78BBE0",
+        {name:"National",id:"National-presidential",color:"#78BBE0",
             data :[
                 [Date.UTC(1996,0,1),58.4],
                 [Date.UTC(2000,0,1),59.5],
@@ -85,7 +59,7 @@ $(document).ready(function() {
                 [Date.UTC(2016,0,1),61.4],
                 ]
         },
-        {name:"National (midterm)",id:"National-midterm",color:"#0089BD",
+        {name:"National",id:"National-midterm",color:"#0089BD",
             data :[
                 [Date.UTC(1994,0,1),48.4],
                 [Date.UTC(1998,0,1),45.3],
@@ -94,12 +68,12 @@ $(document).ready(function() {
                 [Date.UTC(2010,0,1),45.5],
                 [Date.UTC(2014,0,1),41.9],
                 [Date.UTC(2018,0,1),null],
-                ]
+                ],
+            lineWidth:4,
         },
-
     ];
     var dataTurnoutLatino = [
-        {name:"Latino (presidential)",id:"Latino-presidential",color:"#F7DEBB",
+        {name:"Latino",id:"Latino-presidential",color:"#F7DEBB",
         data :[
             [Date.UTC(1996,0,1),44.0],
             [Date.UTC(2000,0,1),44.3],
@@ -109,7 +83,7 @@ $(document).ready(function() {
             [Date.UTC(2016,0,1),47.6],
             ]
     },
-    {name:"Latino (midterm)",id:"Latino-midterm",color:"#FF9600",
+        {name:"Latino",id:"Latino-midterm",color:"#FF9600",
         data :[
             [Date.UTC(1994,0,1),34.4],
             [Date.UTC(1998,0,1),32.8],
@@ -118,8 +92,9 @@ $(document).ready(function() {
             [Date.UTC(2010,0,1),31.2],
             [Date.UTC(2014,0,1),27.0],
             [Date.UTC(2018,0,1),null],
-            ]
-    },
+            ],
+            lineWidth:4,
+        },
     ];
 
     $(".scroll-text").css("padding-bottom", height);
@@ -130,16 +105,17 @@ $(document).ready(function() {
     var stickyBox4 = new Waypoint.Sticky({element: $('#sticky-box-4')}); 
     var stickyBox5 = new Waypoint.Sticky({element: $('#sticky-box-5')});  
     
-    $("#scroll-text-1").waypoint(function(direction) {
+    $("#start-text-1").waypoint(function(direction) {
         if (direction === "down") {
-            $("#chart-wrapper-1").fadeTo(500, 1, makeChart1());
-            chart1.get("Latino").points[15].update({dataLabels: labelstyle1_1});
-            chart1.get("Black").points[15].update({dataLabels: labelstyle1_2});
-            chart1.get("Asian").points[15].update({dataLabels: labelstyle1_3});
-            chart1.get("White").points[15].update({dataLabels: labelstyle1_4});
+            if(chart1Loaded == 1){} else {
+                $("#chart-wrapper-1").fadeTo(500, 1, makeChart1());
+                chart1.get("Latino").points[15].update({dataLabels: labelstyle1_1});
+                chart1.get("Black").points[15].update({dataLabels: labelstyle1_2});
+                chart1.get("Asian").points[15].update({dataLabels: labelstyle1_3});
+                chart1.get("White").points[15].update({dataLabels: labelstyle1_4});
+            }
+            chart1Loaded = 1;
         } else {}
-    }, {
-        offset: "50%"
     });
 
     $("#scroll-text-2").waypoint(function(direction) {
@@ -187,7 +163,6 @@ $(document).ready(function() {
             chart1.get("Black").points[19].update({dataLabels: labelstyle1_6});
             chart1.get("Asian").points[19].update({dataLabels: labelstyle1_7});
             chart1.get("White").points[19].update({dataLabels: labelstyle1_8});
-            
         } else {}
     }, {
         offset: "50%"
@@ -205,19 +180,23 @@ $(document).ready(function() {
 
     $("#sticky-box-1b").waypoint(function(direction) {
         if (direction === "down") {
-            $("#chart-wrapper-1b").fadeTo(500, 1, makeChart1b());
+            if(chart1bLoaded == 1){} else {
+                $("#chart-wrapper-1b").fadeTo(500, 1, makeChart1b());
+            }
+            chart1bLoaded = 1;
         } else {}
     }, {
         offset: "50%"
     });
 
-    $("#scroll-text-5").waypoint(function(direction) {
+    $("#start-text-5").waypoint(function(direction) {
         if (direction === "down") {
-            $("#chart-wrapper-2").fadeTo(500, 1, makeChart2());
-            chart2.get("naturalizedChart").points[0].update({dataLabels: labelstyle});
+            if(chart2Loaded == 1){} else {
+                $("#chart-wrapper-2").fadeTo(500, 1, makeChart2());
+                chart2.get("naturalizedChart").points[0].update({dataLabels: labelstyle});
+            }
+            chart2Loaded = 1;
         } else {}
-    }, {
-        offset: "50%"
     });
 
     $("#scroll-text-6").waypoint(function(direction) {
@@ -249,25 +228,29 @@ $(document).ready(function() {
 
     $("#sticky-box-3").waypoint(function(direction) {
         if (direction === "down") {
-            $("#chart-wrapper-3").fadeTo(500, 1, makeChart3());
-            chart3.get("English").points[0].update({dataLabels: labelstyle2});
-            chart3.get("Spanish").points[0].update({dataLabels: labelstyle2});
+            if(chart3Loaded == 1){} else {
+                $("#chart-wrapper-3").fadeTo(500, 1, makeChart3());
+                chart3.get("English").points[0].update({dataLabels: labelstyle2});
+                chart3.get("Spanish").points[0].update({dataLabels: labelstyle2});
+            }
+            chart3Loaded = 1;
         } else {}
     }, {
         offset: "50%"
     });
 
-    $("#scroll-text-9").waypoint(function(direction) {
+    $("#start-text-9").waypoint(function(direction) {
         if (direction === "down") {
-            $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
+            if(chart4Loaded == 1){} else {
+                $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
+            }
+            chart4Loaded = 1;
         } else {}
-    }, {
-        offset: "50%"
     });
 
     $("#scroll-text-10").waypoint(function(direction) {
         if (direction === "down") {
-            chart4.get("latinoMap").points[43].update({borderWidth: 10,borderColor: '#FF9600'});
+            chart4.get("latinoMap").points[43].update({borderWidth: 9,borderColor: '#333'});
         } else {}
     }, {
         offset: "50%"
@@ -275,7 +258,7 @@ $(document).ready(function() {
     $("#scroll-text-11").waypoint(function(direction) {
         if (direction === "down") {
             chart4.get("latinoMap").points[43].update({borderWidth: 0});
-            chart4.get("latinoMap").points[9].update({borderWidth: 10,borderColor: '#FF9600'});
+            chart4.get("latinoMap").points[9].update({borderWidth: 9,borderColor: '#333'});
         } else {}
     }, {
         offset: "50%"
@@ -317,22 +300,23 @@ $(document).ready(function() {
         offset: "100%"
     });
 
-    $("#scroll-text-15").waypoint(function(direction) {
+    $("#start-text-15").waypoint(function(direction) {
         if (direction === "down") {
-            $("#chart-wrapper-5").fadeTo(500, 1, makeChart5());
-            chart5.get("National-presidential").points[5].update({dataLabels: labelstyle5});
-            chart5.get("National-midterm").points[5].update({dataLabels: labelstyle5});
+            if(chart5Loaded == 1){} else {
+                $("#chart-wrapper-5").fadeTo(500, 1, makeChart5());
+                addLabel("National-midterm","2014<br>Midterm",5);
+                addLabel("National-presidential","2016<br>Presidential",5);
+            }
+            chart5Loaded = 1;
         } else {}
-    }, {
-        offset: "50%"
     });
 
     $("#scroll-text-16").waypoint(function(direction) {
         if (direction === "down") {
             chart5.addSeries(dataTurnoutLatino[0]);
             chart5.addSeries(dataTurnoutLatino[1]);
-            chart5.get("Latino-presidential").points[5].update({dataLabels: labelstyle5});
-            chart5.get("Latino-midterm").points[5].update({dataLabels: labelstyle5});
+            addLabel("Latino-midterm","Midterm",5);
+            addLabel("Latino-presidential","Presidential",5);
         } else {}
     }, {
         offset: "50%"
@@ -340,10 +324,16 @@ $(document).ready(function() {
 
     $("#scroll-text-17").waypoint(function(direction) {
         if (direction === "down") {
-            chart5.get("National-midterm").points[5].update({dataLabels: {enabled: false}});
-            chart5.get("Latino-midterm").points[5].update({dataLabels: {enabled: false}});
-            chart5.get("National-midterm").points[6].update({y:53.4, dataLabels: labelstyle6});
-            chart5.get("Latino-midterm").points[6].update({y:40.4,dataLabels: labelstyle6});
+            labels["National-midterm"].destroy();
+            labels["Latino-midterm"].destroy();
+            chart5.get("National-midterm").points[6].update({y:53.4});
+            chart5.get("Latino-midterm").points[6].update({y:40.4});
+            addLabel2("National-midterm",5);
+            addLabel2("Latino-midterm",5);
+            addLabel("National-midterm","Midterm",6);
+            addLabel("Latino-midterm","Midterm",6);
+            colorLabel("National-presidential");
+            colorLabel("Latino-presidential");
         } else {}
     }, {
         offset: "50%"
@@ -367,7 +357,6 @@ $(document).ready(function() {
         x:-20,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
-
     var labelstyle1_2 ={
         enabled: true,
         allowOverlap: true,
@@ -377,7 +366,6 @@ $(document).ready(function() {
         x:-20,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
-
     var labelstyle1_3 ={
         enabled: true,
         allowOverlap: true,
@@ -387,7 +375,6 @@ $(document).ready(function() {
         x:-32,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
-
         var labelstyle1_4 ={
         enabled: true,
         allowOverlap: true,
@@ -397,7 +384,6 @@ $(document).ready(function() {
         x:-20,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
-
     var labelstyle1_6 ={
         enabled: true,
         allowOverlap: true,
@@ -407,7 +393,6 @@ $(document).ready(function() {
         x:-15,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
-
     var labelstyle1_7 ={
         enabled: true,
         allowOverlap: true,
@@ -417,8 +402,7 @@ $(document).ready(function() {
         x:-15,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
-
-        var labelstyle1_8 ={
+    var labelstyle1_8 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
@@ -427,12 +411,10 @@ $(document).ready(function() {
         x:-15,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
-
-
     var labelstyle ={
         enabled: true,
         allowOverlap: true,
-        format: '{point.y}%',
+        format: '{point.y:.1f}',
         style:{
             fontSize: '14px',
             fontWeight: '600',
@@ -440,12 +422,11 @@ $(document).ready(function() {
             textOutline: false,
         },
     };
-
     var labelstyle2 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{series.name}<br>{point.y}%',
+        format: '{series.name}<br>{point.y:.1f}%',
         style:{
             fontSize: '14px',
             fontWeight: '600',
@@ -454,57 +435,30 @@ $(document).ready(function() {
             textAlign: "center",
         },
     };
-
     var labelstyle3 ={color: '#d3d3d3'};
     var labelstyle4 ={color: '#fff'};
 
-
-    var labelstyle5 ={
-        enabled: true,
-        allowOverlap: true,
-        useHTML: true,
-        format: '{series.name}<br>{point.y}%',
-        x:20,
-        style:{
-            fontSize: '12px',
-            fontWeight: '600',
-            color: '#333',
-            textOutline: false,
-            textAlign: "center",
-        },
-    };
-
-    var labelstyle6 ={
-        enabled: true,
-        allowOverlap: true,
-        useHTML: true,
-        format: '{series.name}<br>{point.y}%',
-        x:-20,
-        style:{
-            fontSize: '12px',
-            fontWeight: '600',
-            color: '#333',
-            textOutline: false,
-            textAlign: "right",
-        },
-    };
-
-    function addLabel3a(id){
-        var siri = chart3a.get(id);
+    function addLabel(id,cat,num){
+        var siri = chart5.get(id);
         var length = siri.points.length;
-        var point = siri.points[length-1];
-        labels[id] = chart3a.renderer.text(siri.name, point.plotX + chart3a.plotLeft + 5,point.plotY + chart3a.plotTop + 5)
+        var point = siri.points[num];
+        labels[id] = chart5.renderer.text(cat + " " + point.y, point.plotX + chart5.plotLeft + 5,point.plotY + chart5.plotTop + 5)
         .attr({zIndex: 5,})
         .add();
     }
 
-    function addLabel3d(id){
-        var siri = chart3d.get(id);
+    function addLabel2(id,num){
+        var siri = chart5.get(id);
         var length = siri.points.length;
-        var point = siri.points[length-1];
-        labels[id] = chart3d.renderer.text(siri.name, point.plotX + chart3d.plotLeft + 5,point.plotY + chart3d.plotTop + 5)
-        .attr({zIndex: 5,})
+        var point = siri.points[num];
+        labels[id] = chart5.renderer.text(point.y, point.plotX + chart5.plotLeft - 10,point.plotY + chart5.plotTop + 15)
+        .attr({zIndex: 5})
+        .css({color: "#bababa"})
         .add();
+    }
+
+    function colorLabel(id){
+        labels[id].css({color: "#bababa"}).attr({zIndex: 1,});
     }
 
     function makeChart1() {
@@ -512,6 +466,7 @@ $(document).ready(function() {
             chart: {
                 renderTo: 'chart-1',
                 type: 'area',
+                animation: {easing:"linear"},
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -636,7 +591,7 @@ $(document).ready(function() {
                 labels: {style:{fontSize: '12px'}}
             },  
             yAxis: {
-                title: {text: null},
+                title: {text: 'Percentage'},
                 endOnTick: false,
                 labels: {style:{fontSize: '12px'}}
             },
@@ -1135,20 +1090,49 @@ $(document).ready(function() {
                 renderTo: 'chart-5',
                 type: 'line',
                 marginRight: 100,
+                animation: {duration:2000},
             },
             title: {text: null},
             subtitle: {enabled: false},
             xAxis: {
                 type: 'datetime',
                 dateTimeLabelFormats: {year: '%Y'},
-                tickInterval: 24 * 3600 * 1000 * 365 * 2,
+                tickInterval: 24 * 3600 * 1000 * 365 * 10,
                 showLastLabel: true,          
                 labels: {style:{fontSize: '12px'}},
+                plotLines: [{
+                    color: 'rgba(204, 214, 235,0.5)',
+                    value: [Date.UTC(2014,0,1)],
+                    width: 1,
+                    label: {
+                        text: '2014',
+                        align: 'right',
+                        verticalAlign: 'bottom',
+                        x: -15,
+                        y: -10,
+                        style:{color: '#666'}
+                    }
+                  },
+                  {
+                    color: 'rgba(204, 214, 235,0.5)',
+                    value: [Date.UTC(2018,0,1)],
+                    width: 1,
+                    label: {
+                        text: '2018',
+                        align: 'right',
+                        verticalAlign: 'bottom',
+                        x: 5,
+                        y: -10,
+                        style:{color: '#666'}
+                    }
+                  }],
+
             },  
             yAxis: {
-                title: {text: null},
+                title: {text: 'Percentage'},
                 endOnTick: false,
                 labels: {style:{fontSize: '12px'}},
+                min: 0,
             },
             credits: {enabled: false},
             legend: {enabled: false},
@@ -1163,7 +1147,4 @@ $(document).ready(function() {
             series: dataTurnout,
         });
     }
-
-    
-   
 });     

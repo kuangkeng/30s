@@ -32,7 +32,7 @@
   .chart-title {font-weight: 500;font-size: 18px;line-height: 1.3em;}
   .scroll-area {position:relative;}
   .scroll-text{position:relative;z-index:9!important;pointer-events: none;color: #333;font-weight: 500;-webkit-font-smoothing: antialiased;}
-  .scroll-text-box {padding:10px 15px;background-color: rgba(255,255,255,0.9);border-radius: 5px;}
+  .scroll-text-box {padding:5px 10px;background-color: rgba(255,255,255,0.8);border-radius: 5px;margin:0 auto;width:80%;}
   .stuck {
     position: fixed;
     top: 0;
@@ -57,6 +57,21 @@
   }
   #legend-swing {opacity:0;}
   #legend-latino {opacity:1;}
+  #legend-turnout {bottom:30%;}
+  @media (max-width: 700px ) { 
+    .scroll-text-box {
+      width:95%;
+    } 
+  }
+
+  @media (max-width: 500px ) { 
+    .scroll-text-box {
+      width:100%;
+      font-size: 0.8em;
+      line-height: 1.4em;
+      padding: 5px;
+    } 
+  }
     
 </style>
 </head>
@@ -79,22 +94,21 @@
       </div>
       <p><span class="drop-cap">A</span>pproximately every 30 seconds, a young Latino citizen of the United States turns 18, or voting age. The 2020 presidential election is expected to be the first time in history Latinos will comprise the largest racial and ethnic minority group in the electorate, with about 32 million eligible voters. Their massive growth as a voting bloc is largely driven by youth coming of age.</p>
       <p>For the first time, Latino voters are set to surpass black voters, who . Demographics indicate 2020 will be the year Latinos MAKE THEIR MARK? in national politics. Their sheer numbers give them power to EXPLAIN THEIR IMPACT.</p>
-      <p>But the trick for candidates up and down the ballot will be getting Latinos to the polls on election day. Voter turnout rates among Latinos tends to be dismal — significantly below those of other groups. GIVE EXAMPLES. And only about half of all Latino eligible voters are registered to vote.</p>
-      <hr> 
       <div class="scroll-area">
+        <div id="start-text-1"><p>But the trick for candidates up and down the ballot will be getting Latinos to the polls on election day. Voter turnout rates among Latinos tends to be dismal — significantly below those of other groups. GIVE EXAMPLES. And only about half of all Latino eligible voters are registered to vote.</p></div>
         <div class="chart-container sticky-box text-center" id="sticky-box-1">
           <div class="chart-wrapper" id="chart-wrapper-1">
             <div class="chart-box" id="chart-1"></div>
             <div class="chart-title">Racial & ethnic breakdown of eligible voters</div>
           </div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-1">
+        <div class="scroll-text" id="scroll-text-1">
           <div class="scroll-text-box">In the last presidential election in 2016, Blacks were the largest minority group among all eligible voters followed by Latinos</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-2">
+        <div class="scroll-text" id="scroll-text-2">
           <div class="scroll-text-box">In 2018, the fast-growing Latinos surpassed Blacks to become the largest minority group, for the first time in history.</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-3">
+        <div class="scroll-text" id="scroll-text-3">
           <div class="scroll-text-box">It is projected that this trend will continue in the 2020 presidential election with Latinos making up a larger share of the electorate.</div>
         </div>
       </div>
@@ -109,22 +123,22 @@
 
       <p>EXPLAIN GET-OUT-THE-VOTE EFFORTS. And there are indications Latinos may turn out in unprecedented numbers in November. Latinos voted in record-breaking numbers in the 2018 midterm election. They were fueled by LIST SOME REASONS, according to EXPERT. That trend may well continue this fall.</p>
       <p>Over the next year, The World will report on the young Latino electorate, including the issues, influences, concerns and challenges driving decision-making and turnout among young Latino voters across the United States. The project is a partnership with NAME EVERYONE INVOLVED. Each week, we’ll bring you stories of Latino youth from across the US — and explore what they care about as the election draws near.</p>
-      <p>So, who are the Latino youth reshaping the US electoral landscape?</p>
-      
+  
       <div class="scroll-area">
+        <div id="start-text-5"><p>So, who are the Latino youth reshaping the US electoral landscape?</p></div>
         <div class="chart-container sticky-box text-center" id="sticky-box-2">
           <div class="chart-wrapper" id="chart-wrapper-2">
             <div class="chart-box" id="chart-2"></div>
             <div class="chart-title">Eligible Latino voters born in US</div>
           </div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-5">
+        <div class="scroll-text" id="scroll-text-5">
           <div class="scroll-text-box">Unlike their parents and grandparents, the overwhelming majority — 95 out of every 100 — of Latinos aged 18 to 23 are born as US citizens.</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-6">
+        <div class="scroll-text" id="scroll-text-6">
           <div class="scroll-text-box">Among Latino Milennials voters, this number is 86.</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-7">
+        <div class="scroll-text" id="scroll-text-7">
           <div class="scroll-text-box">The number is very low among the older generations.</div>
         </div>
       </div>  
@@ -136,9 +150,9 @@
         </div>
       </div> 
       <p>ANALYSIS HERE FROM TANIA ON WHAT ISSUES LATINOS CARE ABOUT. EXPLAIN DIFFERENCES IN POLITICAL LEANINGS OF YOUNGER LATINOS VERSUS OLDER LATINO GROUPS.</p>
-      <p>ANALYSIS FROM TANIA ON WHERE IN THE COUNTRY LATINOS MIGHT HOLD THE MOST SWAY. NAME A FEW STATES THAT WILL BE BATTLEGROUNDS. MENTION THE DATES OF THEIR PRIMARIES.</p>
     
       <div class="scroll-area">
+        <div id="start-text-9"><p>ANALYSIS FROM TANIA ON WHERE IN THE COUNTRY LATINOS MIGHT HOLD THE MOST SWAY. NAME A FEW STATES THAT WILL BE BATTLEGROUNDS. MENTION THE DATES OF THEIR PRIMARIES.</p></div>
         <div class="chart-container sticky-box text-center" id="sticky-box-4">
           <div class="chart-wrapper" id="chart-wrapper-4">
             <div class="chart-box" id="chart-4"></div>
@@ -159,39 +173,44 @@
             </div>
           </div>
         </div> 
-        <div class="container text scroll-text" id="scroll-text-9">
+        <div class="scroll-text" id="scroll-text-9">
           <div class="scroll-text-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-10">
+        <div class="scroll-text" id="scroll-text-10">
           <div class="scroll-text-box">Democrats are desperate to turn Texas blue. Accounts for a quarter (25%) of eligible but unregistered young Latino voters. </div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-11">
+        <div class="scroll-text" id="scroll-text-11">
           <div class="scroll-text-box">Something about Florida.</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-12">
+        <div class="scroll-text" id="scroll-text-12">
           <div class="scroll-text-box">Show only the 9 states.</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-13">
+        <div class="scroll-text" id="scroll-text-13">
           <div class="scroll-text-box">Change color of the 9 states. Change the legend too.</div>
         </div>
       </div> 
       <div id="scroll-text-14"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>        
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      
       <div class="scroll-area">
+        <div id="start-text-15"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
         <div class="chart-container sticky-box text-center" id="sticky-box-5">
           <div class="chart-wrapper" id="chart-wrapper-5">
             <div class="chart-box" id="chart-5"></div>
             <div class="chart-title">Turnout rate 1994-2018</div>
+            <div class="legend" id="legend-turnout">
+              <i style="background:#0089BD;opacity:1;"></i>National<br>
+              <i style="background:#FF9600;opacity:1;"></i>Latino<br>
+            </div>
           </div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-15">
+        <div class="scroll-text" id="scroll-text-15">
           <div class="scroll-text-box">In the past elections, turnout rate of midterm elections is usually lower than presidential elections.</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-16">
+        <div class="scroll-text" id="scroll-text-16">
           <div class="scroll-text-box">For Latino voters, their turnout rate is lower than the national average.</div>
         </div>
-        <div class="container text scroll-text" id="scroll-text-17">
+        <div class="scroll-text" id="scroll-text-17">
           <div class="scroll-text-box">However, 2018 midterm election saw a historic increase in turnout rate across all demographics including Latinos.</div>
         </div>
       </div>  
