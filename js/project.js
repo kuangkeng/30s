@@ -9,10 +9,10 @@ $(document).ready(function() {
     var chart1Loaded, chart1bLoaded, chart2Loaded, chart3Loaded, chart4Loaded, chart5Loaded;
     var labels = {};
     var dataNaturalized = [
-        {name:"18-23",y:95.1,color:"#FF9600"},
-        {name:"24-39",y:0,color:"#F7DEBB"},
-        {name:"40-55",y:0,color:"#F7DEBB"},
-        {name:"56-74",y:0,color:"#F7DEBB"},
+        {name:"15-20",y:95.1,color:"#FF9600"},
+        {name:"21-36",y:0,color:"#F7DEBB"},
+        {name:"37-52",y:0,color:"#F7DEBB"},
+        {name:"53-71",y:0,color:"#F7DEBB"},
     ]; 
     var catNaturalized = [];
     for (var i = 0; i < dataNaturalized.length; i++){
@@ -25,7 +25,7 @@ $(document).ready(function() {
     ];
 
     var dataGrowthPct = [
-        {name:"Latino",id:"Latino",data:[7.82,8.06,8.26,8.49,8.55,8.71,8.87,9.18,9.42,10.01,10.40,10.74,10.98,11.33,11.70,11.94,null,null,null,null],color:"#FF9600"},      
+        {name:"Latino",id:"Latino",data:[7.82,8.06,8.26,8.49,8.55,8.71,8.87,9.18,9.42,10.01,10.40,10.74,10.98,11.33,11.70,11.94,null,null,null,null],color:"#FF9600", fill:1},      
         {name:"Black",id:"Black",data:[11.24,11.29,11.40,11.44,11.50,11.86,11.91,11.99,12.07,12.20,12.27,12.30,12.36,12.44,12.46,12.47,null,null,null,null],color:"#23C763"},
         {name:"Asian",id:"Asian",data:[2.70,2.90,3.07,3.16,3.26,3.32,3.35,3.38,3.47,3.68,3.74,3.85,4.00,4.13,4.22,4.30,null,null,null,null],color:"#E0B500"},
         {name:"White",id:"White",data:[76.24,75.78,75.46,75.10,74.77,74.15,73.85,73.37,72.91,71.86,71.31,70.76,70.22,69.64,69.08,68.67,null,null,null,null],color:"#0089BD"},
@@ -45,11 +45,11 @@ $(document).ready(function() {
     var catAge = ["16-20","21-35","36-50","51-65","66-80","81-100"];
     var dataAge = [
         {name:"Latino",id:"Latino",data:[-14.1,-33.6,-23.9,-17.9,-8.2,-2.3],color:"#FF9600"},      
-        {name:"National",id:"National",data:[8.5,25,22.6,24.4,15.1,4.4],color:"#0089BD"},  
+        {name:"All voters",id:"National",data:[8.5,25,22.6,24.4,15.1,4.4],color:"#0089BD"},  
     ];
 
     var dataTurnout = [
-        {name:"National",id:"National-presidential",color:"#78BBE0",
+        {name:"Presidential",id:"National-presidential",color:"#78BBE0",
             data :[
                 [Date.UTC(1996,0,1),58.4],
                 [Date.UTC(2000,0,1),59.5],
@@ -59,7 +59,7 @@ $(document).ready(function() {
                 [Date.UTC(2016,0,1),61.4],
                 ]
         },
-        {name:"National",id:"National-midterm",color:"#0089BD",
+        {name:"Midterm",id:"National-midterm",color:"#0089BD",
             data :[
                 [Date.UTC(1994,0,1),48.4],
                 [Date.UTC(1998,0,1),45.3],
@@ -73,7 +73,7 @@ $(document).ready(function() {
         },
     ];
     var dataTurnoutLatino = [
-        {name:"Latino",id:"Latino-presidential",color:"#F7DEBB",
+        {name:"Presidential",id:"Latino-presidential",color:"#F7DEBB",
         data :[
             [Date.UTC(1996,0,1),44.0],
             [Date.UTC(2000,0,1),44.3],
@@ -83,7 +83,7 @@ $(document).ready(function() {
             [Date.UTC(2016,0,1),47.6],
             ]
     },
-        {name:"Latino",id:"Latino-midterm",color:"#FF9600",
+        {name:"Midterm",id:"Latino-midterm",color:"#FF9600",
         data :[
             [Date.UTC(1994,0,1),34.4],
             [Date.UTC(1998,0,1),32.8],
@@ -113,6 +113,10 @@ $(document).ready(function() {
                 chart1.get("Black").points[15].update({dataLabels: labelstyle1_2});
                 chart1.get("Asian").points[15].update({dataLabels: labelstyle1_3});
                 chart1.get("White").points[15].update({dataLabels: labelstyle1_4});
+                chart1.get("Latino").points[0].update({dataLabels: labelstyle2_1});
+                chart1.get("Black").points[0].update({dataLabels: labelstyle2_2});
+                chart1.get("Asian").points[0].update({dataLabels: labelstyle2_3});
+                chart1.get("White").points[0].update({dataLabels: labelstyle2_4});
             }
             chart1Loaded = 1;
         } else {}
@@ -250,7 +254,7 @@ $(document).ready(function() {
 
     $("#scroll-text-10").waypoint(function(direction) {
         if (direction === "down") {
-            chart4.get("latinoMap").points[43].update({borderWidth: 9,borderColor: '#333'});
+            chart4.get("latinoMap").points[43].update({borderWidth: 7,borderColor: '#ffdf00'});
         } else {}
     }, {
         offset: "50%"
@@ -258,7 +262,7 @@ $(document).ready(function() {
     $("#scroll-text-11").waypoint(function(direction) {
         if (direction === "down") {
             chart4.get("latinoMap").points[43].update({borderWidth: 0});
-            chart4.get("latinoMap").points[9].update({borderWidth: 9,borderColor: '#333'});
+            chart4.get("latinoMap").points[9].update({borderWidth: 7,borderColor: '#ffdf00'});
         } else {}
     }, {
         offset: "50%"
@@ -353,43 +357,80 @@ $(document).ready(function() {
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{series.name}<br>{point.y:.1f}',
-        x:-20,
+        format: '{point.y:.1f}',
+        y: 30,
+        x:-17,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle1_2 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{series.name}<br>{point.y:.1f}',
-        y:40,
-        x:-20,
+        format: '{point.y:.1f}',
+        y: 30,
+        x:-17,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle1_3 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{series.name} {point.y:.1f}',
+        format: '{point.y:.1f}',
         y: 17,
-        x:-32,
+        x:-14,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
-        var labelstyle1_4 ={
+    var labelstyle1_4 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{point.y:.1f}',
+        y: 110,
+        x:-17,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+    };
+    var labelstyle2_1 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{series.name}<br>{point.y:.1f}',
+        y:-5,
+        x:-10,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "left",},
+    };
+    var labelstyle2_2 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{series.name}<br>{point.y:.1f}',
+        y:37,
+        x:-10,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "left",},
+    };
+    var labelstyle2_3 ={
+        enabled: true,
+        allowOverlap: true,
+        useHTML: true,
+        format: '{series.name} {point.y:.1f}',
+        y: 17,
+        x:-10,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "left",},
+    };
+    var labelstyle2_4 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
         format: '{series.name}<br>{point.y:.1f}',
         y: 110,
-        x:-20,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+        x:-10,
+        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "left",},
     };
     var labelstyle1_6 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
         format: '{point.y:.1f}',
-        y: 40,
+        y: 34,
         x:-15,
         style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
@@ -426,7 +467,7 @@ $(document).ready(function() {
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{series.name}<br>{point.y:.1f}%',
+        format: '{series.name}<br>{point.y:.1f}',
         style:{
             fontSize: '14px',
             fontWeight: '600',
@@ -444,6 +485,7 @@ $(document).ready(function() {
         var point = siri.points[num];
         labels[id] = chart5.renderer.text(cat + " " + point.y, point.plotX + chart5.plotLeft + 5,point.plotY + chart5.plotTop + 5)
         .attr({zIndex: 5,})
+        .css({fontSize: '11px',fontWeight: '600'})
         .add();
     }
 
@@ -467,6 +509,10 @@ $(document).ready(function() {
                 renderTo: 'chart-1',
                 type: 'area',
                 animation: {easing:"linear"},
+                style: {
+                    color:"#333",
+                    fontFamily: 'Nunito Sans, sans-serif',
+                },
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -511,6 +557,8 @@ $(document).ready(function() {
                     }]
                 },
                 series:{
+                    fillOpacity: 1,
+                    lineWidth: 5,
                     pointStart: 2001,
                     dataLabels: {enabled: false,},
                     states: {hover: {enabled: false},inactive: {opacity: 1},},
@@ -525,6 +573,10 @@ $(document).ready(function() {
             chart: {
                 renderTo: 'chart-1b',
                 type: 'bar',
+                style: {
+                    color:"#333",
+                    fontFamily: 'Nunito Sans, sans-serif',
+                },
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -582,6 +634,10 @@ $(document).ready(function() {
             chart: {
                 renderTo: 'chart-2',
                 type: 'column',
+                style: {
+                    color:"#333",
+                    fontFamily: 'Nunito Sans, sans-serif',
+                },
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -620,6 +676,10 @@ $(document).ready(function() {
             chart: {
                 renderTo: 'chart-3',
                 type: 'bar',
+                style: {
+                    color:"#333",
+                    fontFamily: 'Nunito Sans, sans-serif',
+                },
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -629,7 +689,7 @@ $(document).ready(function() {
                 labels: {style:{fontSize: '12px'}}
             },  
             yAxis: {
-                title: {text: null},
+                title: {text: 'Percentage'},
                 endOnTick: false,
                 labels: {style:{fontSize: '12px'}}
             },
@@ -658,6 +718,10 @@ $(document).ready(function() {
                 renderTo: 'chart-4',
                 type: 'tilemap',
                 inverted: true,
+                style: {
+                    color:"#333",
+                    fontFamily: 'Nunito Sans, sans-serif',
+                },
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -667,31 +731,31 @@ $(document).ready(function() {
                 dataClasses: [{
                     from: 0,
                     to: 5,
-                    color: '#ffffb2',
+                    color: '#ffcf4f',
                     name: '5% or less'
                 }, {
                     from: 5.1,
                     to: 10,
-                    color: '#fed976',
+                    color: '#ffaa23',
                     name: '5.1-10%'
                 }, {
                     from: 10.1,
                     to: 15,
-                    color: '#feb24c',
+                    color: '#f18a00',
                     name: '10.1-15%'
                 }, {
                     from: 15.1,
                     to: 20,
-                    color: '#fd8d3c',
+                    color: '#d37300',
                     name: '15.1-20%'
                 }, {
                     from: 20.1,
                     to: 25,
-                    color: '#f03b20',
+                    color: '#b75c00',
                     name: '20.1-25%'
                 }, {
                     from: 25.1,
-                    color: '#bd0026',
+                    color: '#9b4500',
                     name: '>25%'
                 }]
             },
@@ -1091,6 +1155,10 @@ $(document).ready(function() {
                 type: 'line',
                 marginRight: 100,
                 animation: {duration:2000},
+                style: {
+                    color:"#333",
+                    fontFamily: 'Nunito Sans, sans-serif',
+                },
             },
             title: {text: null},
             subtitle: {enabled: false},
@@ -1136,12 +1204,18 @@ $(document).ready(function() {
             },
             credits: {enabled: false},
             legend: {enabled: false},
-            tooltip: {enabled: false},
+            tooltip: {
+                enabled: true,
+                headerFormat: '{point.key}<br>',
+                pointFormat:'<b>{series.name} {point.y}</b>',
+                
+            },
             plotOptions: {
                 series:{
+                    stickyTracking: false,
                     dataLabels: {enabled: false},
                     marker: {enabled: false},
-                    states: {hover: {enabled: false},inactive: {opacity: 1},},
+                    // states: {hover: {enabled: false},inactive: {opacity: 1},},
                 },
             },    
             series: dataTurnout,
