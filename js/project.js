@@ -8,6 +8,7 @@ $(document).ready(function() {
     var chart1, chart1b, chart2, chart3, chart4, chart5; 
     var chart1Loaded, chart1bLoaded, chart2Loaded, chart3Loaded, chart4Loaded, chart5Loaded;
     var labels = {};
+    var labels2 = {};
     var dataNaturalized = [
         {name:"*15-20",y:95.1,color:"#FF9600"},
         {name:"21-36",y:0,color:"#F7DEBB"},
@@ -119,7 +120,7 @@ $(document).ready(function() {
                 chart1.get("White").points[0].update({dataLabels: labelstyle2_4});
             }
             chart1Loaded = 1;
-        } else {}
+        }
     });
 
     $("#scroll-text-2").waypoint(function(direction) {
@@ -140,7 +141,24 @@ $(document).ready(function() {
                 var num = 16+i;
                 chart1.get("White").points[num].update({y:dataGrowthPct2[3][i]});
             }  
-        } else {}
+        } else {
+            for (i=0; i < 2; i += 1) {
+                var num = 16+i;
+                chart1.get("Latino").points[num].update({y:null});
+            }
+            for (i=0; i < 2; i += 1) {
+                var num = 16+i;
+                chart1.get("Black").points[num].update({y:null});
+            }
+            for (i=0; i < 2; i += 1) {
+                var num = 16+i;
+                chart1.get("Asian").points[num].update({y:null});
+            }
+            for (i=0; i < 2; i += 1) {
+                var num = 16+i;
+                chart1.get("White").points[num].update({y:null});
+            }  
+        }
     }, {
         offset: "50%"
     });
@@ -167,7 +185,28 @@ $(document).ready(function() {
             chart1.get("Black").points[19].update({dataLabels: labelstyle1_6});
             chart1.get("Asian").points[19].update({dataLabels: labelstyle1_7});
             chart1.get("White").points[19].update({dataLabels: labelstyle1_8});
-        } else {}
+        } else {
+            for (i=2; i < 4; i += 1) {
+                var num = 16+i;
+                chart1.get("Latino").points[num].update({y:null});
+            }
+            for (i=2; i < 4; i += 1) {
+                var num = 16+i;
+                chart1.get("Black").points[num].update({y:null});
+            }
+            for (i=2; i < 4; i += 1) {
+                var num = 16+i;
+                chart1.get("Asian").points[num].update({y:null});
+            }
+            for (i=2; i < 4; i += 1) {
+                var num = 16+i;
+                chart1.get("White").points[num].update({y:null});
+            }
+            chart1.get("Latino").points[19].update({dataLabels: {enabled: "false"}});
+            chart1.get("Black").points[19].update({dataLabels: {enabled: "false"}});
+            chart1.get("Asian").points[19].update({dataLabels: {enabled: "false"}});
+            chart1.get("White").points[19].update({dataLabels: {enabled: "false"}});            
+        }
     }, {
         offset: "50%"
     });
@@ -201,7 +240,7 @@ $(document).ready(function() {
                 addLabel("National-presidential","2016<br>Presidential",5);
             }
             chart5Loaded = 1;
-        } else {}
+        }
     });
 
     $("#scroll-text-16").waypoint(function(direction) {
@@ -210,7 +249,12 @@ $(document).ready(function() {
             chart5.addSeries(dataTurnoutLatino[1]);
             addLabel("Latino-midterm","Midterm",5);
             addLabel("Latino-presidential","Presidential",5);
-        } else {}
+        } else {
+            chart5.get("Latino-presidential").remove();
+            chart5.get("Latino-midterm").remove();
+            labels["Latino-presidential"].destroy();
+            labels["Latino-midterm"].destroy();
+        }
     }, {
         offset: "50%"
     });
@@ -227,7 +271,20 @@ $(document).ready(function() {
             addLabel("Latino-midterm","Midterm",6);
             colorLabel("National-presidential");
             colorLabel("Latino-presidential");
-        } else {}
+        } else {
+            labels["National-midterm"].destroy();
+            labels["Latino-midterm"].destroy();
+            labels["National-presidential"].destroy();
+            labels["Latino-presidential"].destroy();
+            labels2["National-midterm"].destroy();
+            labels2["Latino-midterm"].destroy();
+            chart5.get("National-midterm").points[6].update({y:null});
+            chart5.get("Latino-midterm").points[6].update({y:null});
+            addLabel("Latino-midterm","Midterm",5);
+            addLabel("Latino-presidential","Presidential",5);
+            addLabel("National-midterm","2014<br>Midterm",5);
+            addLabel("National-presidential","2016<br>Presidential",5);
+        }
     }, {
         offset: "50%"
     });
@@ -250,13 +307,15 @@ $(document).ready(function() {
                 chart2.get("naturalizedChart").points[0].update({dataLabels: labelstyle});
             }
             chart2Loaded = 1;
-        } else {}
+        }
     });
 
     $("#scroll-text-6").waypoint(function(direction) {
         if (direction === "down") {
             chart2.get("naturalizedChart").points[1].update({y:86.0,dataLabels: labelstyle});
-        } else {}
+        } else {
+            chart2.get("naturalizedChart").points[1].update({y:null,dataLabels: {enabled: "false"}});
+        }
     }, {
         offset: "50%"
     });
@@ -265,7 +324,10 @@ $(document).ready(function() {
         if (direction === "down") {
             chart2.get("naturalizedChart").points[2].update({y:65.2,dataLabels: labelstyle});
             chart2.get("naturalizedChart").points[3].update({y:57.2,dataLabels: labelstyle});
-        } else {}
+        } else {
+            chart2.get("naturalizedChart").points[2].update({y:null,dataLabels: {enabled: "false"}});
+            chart2.get("naturalizedChart").points[3].update({y:null,dataLabels: {enabled: "false"}});
+        }
     }, {
         offset: "50%"
     });
@@ -307,7 +369,7 @@ $(document).ready(function() {
                 }
             }
             chart4Loaded = 1;
-        } else {}
+        } 
     });
 
     $("#scroll-text-9").waypoint(function(direction) {
@@ -317,7 +379,13 @@ $(document).ready(function() {
             chart4.get("latinoMap").points[2].update({color: '#9e9e9e',dataLabels: labelstyle4});
             chart4.get("latinoMap").points[32].update({color: '#9e9e9e',dataLabels: labelstyle4});
             chart4.get("latinoMap").points[43].update({color: '#9e9e9e',dataLabels: labelstyle4});
-        } else {}
+        } else {
+            chart4.get("latinoMap").points[4].update({color: '#9b4500',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[9].update({color: '#b75c00',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[2].update({color: '#b75c00',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[32].update({color: '#f18a00',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[43].update({color: '#9b4500',dataLabels: labelstyle5});
+        }
     }, {
         offset: "50%"
     });
@@ -330,7 +398,14 @@ $(document).ready(function() {
             chart4.get("latinoMap").points[32].update({color: '#f18a00',dataLabels: labelstyle5});
             chart4.get("latinoMap").points[43].update({color: '#9b4500',dataLabels: labelstyle5});
             chart4.get("latinoMap").points[31].update({color: '#9e9e9e',dataLabels: labelstyle4});
-        } else {}
+        } else {
+            chart4.get("latinoMap").points[4].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[9].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[2].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[32].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[43].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[31].update({color: '#9b4500',dataLabels: labelstyle5});
+        }
     }, {
         offset: "50%"
     });
@@ -519,7 +594,7 @@ $(document).ready(function() {
         var siri = chart5.get(id);
         var length = siri.points.length;
         var point = siri.points[num];
-        labels[id] = chart5.renderer.text(point.y, point.plotX + chart5.plotLeft - 10,point.plotY + chart5.plotTop + 15)
+        labels2[id] = chart5.renderer.text(point.y, point.plotX + chart5.plotLeft - 10,point.plotY + chart5.plotTop + 15)
         .attr({zIndex: 5})
         .css({color: "#bababa"})
         .add();
