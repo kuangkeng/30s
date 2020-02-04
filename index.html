@@ -29,7 +29,7 @@
   #chart-2 {height: 350px; max-width: 300px;}
   #chart-3 {max-width: 600px; height: 300px;}
   #chart-4 {height: 500px;}
-  .chart-title {font-weight: 500;font-size: 18px;line-height: 1.3em;}
+  .chart-title {font-weight: 500;font-size: 18px;line-height: 1.3em;margin-bottom: 30px;}
   .scroll-area {position:relative;}
   .scroll-text{position:relative;z-index:9!important;pointer-events: none;color: #333;font-weight: 500;-webkit-font-smoothing: antialiased;}
   .scroll-text-box {padding:5px 10px;background-color: rgba(255,255,255,0.8);border-radius: 5px;margin:0 auto;width:80%;}
@@ -58,6 +58,7 @@
   }
   #legend-swing {opacity:0;}
   #legend-latino {opacity:1;}
+  #legend-latino-mobile {opacity:0;}
   #legend-turnout {bottom:30%;}
   @media (max-width: 700px ) { 
     .scroll-text-box {
@@ -100,7 +101,7 @@
         <div class="chart-container sticky-box text-center" id="sticky-box-1">
           <div class="chart-wrapper" id="chart-wrapper-1">
             <div class="chart-box" id="chart-1"></div>
-            <div class="chart-title">Racial & ethnic breakdown of eligible voters</div>
+            <div class="chart-title">Racial & ethnic breakdown of eligible voters.</div>
           </div>
         </div>
         <div class="scroll-text" id="scroll-text-1">
@@ -118,7 +119,7 @@
       <div class="sticky-box text-center" id="sticky-box-1b">
         <div id="chart-wrapper-1b">
           <div class="chart-box" id="chart-1b"></div>
-          <div class="chart-title"></div>
+          <div class="chart-title">Age distribution of eligible voters.</div>
         </div>
       </div>
 
@@ -130,7 +131,7 @@
         <div class="chart-container sticky-box text-center" id="sticky-box-2">
           <div class="chart-wrapper" id="chart-wrapper-2">
             <div class="chart-box" id="chart-2"></div>
-            <div class="chart-title">Eligible Latino voters born in US</div>
+            <div class="chart-title">Eligible Latino voters born in US.</div>
           </div>
         </div>
         <div class="scroll-text" id="scroll-text-5">
@@ -147,7 +148,7 @@
       <div class="sticky-box text-center" id="sticky-box-3">
         <div id="chart-wrapper-3">
           <div class="chart-box" id="chart-3"></div>
-          <div class="chart-title"></div>
+          <div class="chart-title">Language spoken at home for Latino voters.</div>
         </div>
       </div> 
       <p>ANALYSIS HERE FROM TANIA ON WHAT ISSUES LATINOS CARE ABOUT. EXPLAIN DIFFERENCES IN POLITICAL LEANINGS OF YOUNGER LATINOS VERSUS OLDER LATINO GROUPS.</p>
@@ -162,7 +163,7 @@
         <div class="chart-container sticky-box text-center" id="sticky-box-4">
           <div class="chart-wrapper" id="chart-wrapper-4">
             <div class="chart-box" id="chart-4"></div>
-            <div class="chart-title"></div>
+            <div class="chart-title">Where are the Latino voters?</div>
             <div class="legend" id="legend-latino">
               <b>Percentage of</b><br><b>Latino voters</b><br>
               <i style="background:#ffcf4f;opacity:1;"></i>5% or less<br>
@@ -171,6 +172,23 @@
               <i style="background:#d37300;opacity:1;"></i>15.1-20%<br>
               <i style="background:#b75c00;opacity:1;"></i>20.1-25%<br>
               <i style="background:#9b4500;opacity:1;"></i>>25%
+            </div>
+            <div class="legend" id="legend-latino-mobile">
+              <b>Percentage of Latino voters</b><br>
+              <table style="width: 100%;">
+                <tr>
+                  <td>
+                    <i style="background:#ffcf4f;opacity:1;"></i>5% or less<br>
+                    <i style="background:#ffaa23;opacity:1;"></i>5.1-10%<br>
+                    <i style="background:#f18a00;opacity:1;"></i>10.1-15%<br>
+                  </td>
+                  <td>
+                    <i style="background:#d37300;opacity:1;"></i>15.1-20%<br>
+                    <i style="background:#b75c00;opacity:1;"></i>20.1-25%<br>
+                    <i style="background:#9b4500;opacity:1;"></i>>25%
+                  </td>
+                </tr>
+              </table>
             </div>
             <div class="legend" id="legend-swing">
               <b>Winner in 2016</b><br>
@@ -203,7 +221,7 @@
         <div class="chart-container sticky-box text-center" id="sticky-box-5">
           <div class="chart-wrapper" id="chart-wrapper-5">
             <div class="chart-box" id="chart-5"></div>
-            <div class="chart-title">Turnout rate 1994-2018</div>
+            <div class="chart-title">Turnout rate 1994-2018.</div>
             <div class="legend" id="legend-turnout">
               <i style="background:#0089BD;opacity:1;"></i>National<br>
               <i style="background:#FF9600;opacity:1;"></i>Latino<br>

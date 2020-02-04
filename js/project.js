@@ -9,7 +9,7 @@ $(document).ready(function() {
     var chart1Loaded, chart1bLoaded, chart2Loaded, chart3Loaded, chart4Loaded, chart5Loaded;
     var labels = {};
     var dataNaturalized = [
-        {name:"15-20",y:95.1,color:"#FF9600"},
+        {name:"*15-20",y:95.1,color:"#FF9600"},
         {name:"21-36",y:0,color:"#F7DEBB"},
         {name:"37-52",y:0,color:"#F7DEBB"},
         {name:"53-71",y:0,color:"#F7DEBB"},
@@ -42,9 +42,9 @@ $(document).ready(function() {
     var stateRed = ["TX","FL","PA","AZ","MI","WI"];
     var stateBlue = ["NM","NV","NH"];
 
-    var catAge = ["16-20","21-35","36-50","51-65","66-80","81-100"];
+    var catAge = ["*16-20","21-35","36-50","51-65","66-80","81-100"];
     var dataAge = [
-        {name:"Latino",id:"Latino",data:[-14.1,-33.6,-23.9,-17.9,-8.2,-2.3],color:"#FF9600"},      
+        {name:"Latino voters",id:"Latino",data:[-14.1,-33.6,-23.9,-17.9,-8.2,-2.3],color:"#FF9600"},      
         {name:"All voters",id:"National",data:[8.5,25,22.6,24.4,15.1,4.4],color:"#0089BD"},  
     ];
 
@@ -246,7 +246,15 @@ $(document).ready(function() {
     $("#start-text-9").waypoint(function(direction) {
         if (direction === "down") {
             if(chart4Loaded == 1){} else {
-                $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
+                if (width<500){
+                    $('#chart-4').css({"height":230,"margin-bottom":100});
+                    $('#legend-latino').css("opacity",0);
+                    $('#legend-latino-mobile').css("opacity",1);
+                    $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
+                    chart4.get("latinoMap").update({pointPadding: 0.5, borderWidth: 0, dataLabels: {style:{fontSize: '7px'}}});
+                } else {
+                    $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
+                }
             }
             chart4Loaded = 1;
         } else {}
@@ -287,7 +295,11 @@ $(document).ready(function() {
             for (i=0; i < stateBlue.length; i += 1) {
                 chart4.get(stateBlue[i]).update({color:"#031BBB", dataLabels: labelstyle4});
             }  
-            $("#legend-latino").fadeTo(500, 0);
+            if (width<500){
+                $("#legend-latino-mobile").fadeTo(500, 0);
+            }else{
+                $("#legend-latino").fadeTo(500, 0);
+            }
             $("#legend-swing").fadeTo(500, 1);
         } else {}
     }, {
