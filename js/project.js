@@ -195,6 +195,56 @@ $(document).ready(function() {
 
     $("#start-text-5").waypoint(function(direction) {
         if (direction === "down") {
+            if(chart5Loaded == 1){} else {
+                $("#chart-wrapper-5").fadeTo(500, 1, makeChart5());
+                addLabel("National-midterm","2014<br>Midterm",5);
+                addLabel("National-presidential","2016<br>Presidential",5);
+            }
+            chart5Loaded = 1;
+        } else {}
+    });
+
+    $("#scroll-text-16").waypoint(function(direction) {
+        if (direction === "down") {
+            chart5.addSeries(dataTurnoutLatino[0]);
+            chart5.addSeries(dataTurnoutLatino[1]);
+            addLabel("Latino-midterm","Midterm",5);
+            addLabel("Latino-presidential","Presidential",5);
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-17").waypoint(function(direction) {
+        if (direction === "down") {
+            labels["National-midterm"].destroy();
+            labels["Latino-midterm"].destroy();
+            chart5.get("National-midterm").points[6].update({y:53.4});
+            chart5.get("Latino-midterm").points[6].update({y:40.4});
+            addLabel2("National-midterm",5);
+            addLabel2("Latino-midterm",5);
+            addLabel("National-midterm","Midterm",6);
+            addLabel("Latino-midterm","Midterm",6);
+            colorLabel("National-presidential");
+            colorLabel("Latino-presidential");
+        } else {}
+    }, {
+        offset: "50%"
+    });
+
+    $("#scroll-text-8").waypoint(function(direction) {
+        if (direction === "down") {
+            $("#sticky-box-5").animate({opacity: 0},1000);
+        } else {
+            $("#sticky-box-5").animate({opacity: 1},1000);
+        }
+    }, {
+        offset: "100%"
+    });
+
+
+    $("#start-text-15").waypoint(function(direction) {
+        if (direction === "down") {
             if(chart2Loaded == 1){} else {
                 $("#chart-wrapper-2").fadeTo(500, 1, makeChart2());
                 chart2.get("naturalizedChart").points[0].update({dataLabels: labelstyle});
@@ -220,7 +270,7 @@ $(document).ready(function() {
         offset: "50%"
     });
 
-    $("#scroll-text-8").waypoint(function(direction) {
+    $("#scroll-text-18").waypoint(function(direction) {
         if (direction === "down") {
             $("#sticky-box-2").animate({opacity: 0},1000);
         } else {
@@ -247,7 +297,7 @@ $(document).ready(function() {
         if (direction === "down") {
             if(chart4Loaded == 1){} else {
                 if (width<500){
-                    $('#chart-4').css({"height":230,"margin-bottom":100});
+                    $('#chart-4').css({"height":230,"margin-bottom":90});
                     $('#legend-latino').css("opacity",0);
                     $('#legend-latino-mobile').css("opacity",1);
                     $("#chart-wrapper-4").fadeTo(500, 1, makeChart4());
@@ -301,6 +351,9 @@ $(document).ready(function() {
                 $("#legend-latino").fadeTo(500, 0);
             }
             $("#legend-swing").fadeTo(500, 1);
+            $("#chart-title-4").fadeOut(500,function() {
+                $("#chart-title-4b").fadeIn();
+            });
         } else {}
     }, {
         offset: "50%"
@@ -316,55 +369,6 @@ $(document).ready(function() {
         offset: "100%"
     });
 
-    $("#start-text-15").waypoint(function(direction) {
-        if (direction === "down") {
-            if(chart5Loaded == 1){} else {
-                $("#chart-wrapper-5").fadeTo(500, 1, makeChart5());
-                addLabel("National-midterm","2014<br>Midterm",5);
-                addLabel("National-presidential","2016<br>Presidential",5);
-            }
-            chart5Loaded = 1;
-        } else {}
-    });
-
-    $("#scroll-text-16").waypoint(function(direction) {
-        if (direction === "down") {
-            chart5.addSeries(dataTurnoutLatino[0]);
-            chart5.addSeries(dataTurnoutLatino[1]);
-            addLabel("Latino-midterm","Midterm",5);
-            addLabel("Latino-presidential","Presidential",5);
-        } else {}
-    }, {
-        offset: "50%"
-    });
-
-    $("#scroll-text-17").waypoint(function(direction) {
-        if (direction === "down") {
-            labels["National-midterm"].destroy();
-            labels["Latino-midterm"].destroy();
-            chart5.get("National-midterm").points[6].update({y:53.4});
-            chart5.get("Latino-midterm").points[6].update({y:40.4});
-            addLabel2("National-midterm",5);
-            addLabel2("Latino-midterm",5);
-            addLabel("National-midterm","Midterm",6);
-            addLabel("Latino-midterm","Midterm",6);
-            colorLabel("National-presidential");
-            colorLabel("Latino-presidential");
-        } else {}
-    }, {
-        offset: "50%"
-    });
-
-    $("#scroll-text-18").waypoint(function(direction) {
-        if (direction === "down") {
-            $("#sticky-box-5").animate({opacity: 0},1000);
-        } else {
-            $("#sticky-box-5").animate({opacity: 1},1000);
-        }
-    }, {
-        offset: "100%"
-    });
-
     var labelstyle1_1 ={
         enabled: true,
         allowOverlap: true,
@@ -372,7 +376,7 @@ $(document).ready(function() {
         format: '{point.y:.1f}',
         y: 30,
         x:-17,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle1_2 ={
         enabled: true,
@@ -381,16 +385,16 @@ $(document).ready(function() {
         format: '{point.y:.1f}',
         y: 30,
         x:-17,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle1_3 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
         format: '{point.y:.1f}',
-        y: 17,
+        y: 19,
         x:-14,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle1_4 ={
         enabled: true,
@@ -399,43 +403,43 @@ $(document).ready(function() {
         format: '{point.y:.1f}',
         y: 110,
         x:-17,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle2_1 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{series.name}<br>{point.y:.1f}',
+        format: '{series.name} {point.y:.1f}',
         y:-5,
         x:-10,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "left",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "left",},
     };
     var labelstyle2_2 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{series.name}<br>{point.y:.1f}',
+        format: '{series.name} {point.y:.1f}',
         y:37,
         x:-10,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "left",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "left",},
     };
     var labelstyle2_3 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
         format: '{series.name} {point.y:.1f}',
-        y: 17,
+        y: 19,
         x:-10,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "left",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "left",},
     };
     var labelstyle2_4 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
-        format: '{series.name}<br>{point.y:.1f}',
+        format: '{series.name} {point.y:.1f}',
         y: 110,
         x:-10,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "left",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "left",},
     };
     var labelstyle1_6 ={
         enabled: true,
@@ -444,16 +448,16 @@ $(document).ready(function() {
         format: '{point.y:.1f}',
         y: 34,
         x:-15,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle1_7 ={
         enabled: true,
         allowOverlap: true,
         useHTML: true,
         format: '{point.y:.1f}',
-        y: 17,
+        y: 19,
         x:-15,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle1_8 ={
         enabled: true,
@@ -462,7 +466,7 @@ $(document).ready(function() {
         format: '{point.y:.1f}',
         y: 110,
         x:-15,
-        style:{fontSize: '11px',fontWeight: '600',color: '#333',textAlign: "right",},
+        style:{fontSize: '14px',fontWeight: '600',color: '#333',textAlign: "right",},
     };
     var labelstyle ={
         enabled: true,
@@ -497,7 +501,7 @@ $(document).ready(function() {
         var point = siri.points[num];
         labels[id] = chart5.renderer.text(cat + " " + point.y, point.plotX + chart5.plotLeft + 5,point.plotY + chart5.plotTop + 5)
         .attr({zIndex: 5,})
-        .css({fontSize: '11px',fontWeight: '600'})
+        .css({fontSize: '14px',fontWeight: '600'})
         .add();
     }
 
@@ -523,7 +527,7 @@ $(document).ready(function() {
                 animation: {easing:"linear"},
                 style: {
                     color:"#333",
-                    fontFamily: 'Nunito Sans, sans-serif',
+                    fontFamily: 'Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif',
                 },
             },
             title: {text: null},
@@ -587,7 +591,7 @@ $(document).ready(function() {
                 type: 'bar',
                 style: {
                     color:"#333",
-                    fontFamily: 'Nunito Sans, sans-serif',
+                    fontFamily: 'Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif',
                 },
             },
             title: {text: null},
@@ -648,7 +652,7 @@ $(document).ready(function() {
                 type: 'column',
                 style: {
                     color:"#333",
-                    fontFamily: 'Nunito Sans, sans-serif',
+                    fontFamily: 'Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif',
                 },
             },
             title: {text: null},
@@ -690,7 +694,7 @@ $(document).ready(function() {
                 type: 'bar',
                 style: {
                     color:"#333",
-                    fontFamily: 'Nunito Sans, sans-serif',
+                    fontFamily: 'Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif',
                 },
             },
             title: {text: null},
@@ -732,7 +736,7 @@ $(document).ready(function() {
                 inverted: true,
                 style: {
                     color:"#333",
-                    fontFamily: 'Nunito Sans, sans-serif',
+                    fontFamily: 'Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif',
                 },
             },
             title: {text: null},
@@ -787,7 +791,8 @@ $(document).ready(function() {
                         format: '{point.id}',
                         color: '#333',
                         style: {
-                            textOutline: false
+                            textOutline: false,
+                            fontSize: "14px",
                         }
                     }
                 }
@@ -1169,7 +1174,7 @@ $(document).ready(function() {
                 animation: {duration:2000},
                 style: {
                     color:"#333",
-                    fontFamily: 'Nunito Sans, sans-serif',
+                    fontFamily: 'Source Sans Pro,Helvetica Neue,Helvetica,Arial,sans-serif',
                 },
             },
             title: {text: null},

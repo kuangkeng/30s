@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-<title>30 Seconds</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="Tania Karas">
+<link rel="shortcut icon" href="https://media.pri.org/s3fs-public/favicon_0.ico" type="image/vnd.microsoft.icon" />
+<meta http-equiv="x-dns-prefetch-control" content="on" />
+<meta name="robots" content="follow, index" />
+<meta property="fb:admins" content="16800048" />
+<meta property="fb:app_id" content="142079625983010" />
+<meta property="og:site_name" content="Public Radio International" />
+<meta property="article:publisher" content="https://www.facebook.com/publicradiointernational" />
+<meta property="og:locale" content="en_US" />
+
+<!-- ### Story Metadata, Important for social sharing. Look for the word Insert and add in custom data there.-->
+<link rel="canonical" href="" />
+<meta property="og:site_name" content="Public Radio International" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="" />
+<meta name="twitter:url" content="" />
+<meta name="twitter:title" content="Every 30 seconds, a young Latino in the US turns 18. Their votes count more than ever." />
+<meta name="twitter:image:src" content="" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="" />
+<meta property="og:title" content="Every 30 seconds, a young Latino in the US turns 18. Their votes count more than ever." />
+<meta property="og:description" content="" />
+<meta property="og:image" content="" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="707" />
+
+<meta name="news_keywords" content="">
+<title>Every 30 seconds, a young Latino in the US turns 18. Their votes count more than ever.</title>
+
+<meta name="viewport" content="width=device-width">
+<meta name="MobileOptimized" content="width">
+<meta name="HandheldFriendly" content="true">
+<meta http-equiv="cleartype" content="on">
 <!-- ### Loading in base styles These should not be changed -->
 <link href="https://cdn2.pri.org/themes/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900,400italic|Alegreya+Sans&subset=latin,vietnamese,latin-ext' rel='stylesheet' type='text/css'>
@@ -20,7 +53,67 @@
 
 
 <style>
-	html,body{font-size:22px;font-weight:400;background:#fff; font-family: 'Nunito Sans', sans-serif; font-weight: 200;}
+	/* Needed for full height bgs */
+  html,body {
+    height:100%;
+    margin:0;
+  }
+  html>body .header.cover {
+    height:auto;
+    margin-bottom: 0px;
+  }
+  .header.cover h1 {
+      text-shadow: .5px .5px #333;
+  }
+
+  .header.cover .container {
+    min-height: 270px;
+    bottom:5px;
+  }
+
+  .header.cover:after {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:4;
+    width:100%;
+    height:100%;
+    content:"";
+    background:url(https://interactive.pri.org/themes/images/bg_pattern.png) repeat,-webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,.3)),color-stop(0,rgba(0,0,0,.7)));
+    background:url(https://interactive.pri.org/themes/images/bg_pattern.png) repeat,-webkit-linear-gradient(bottom,rgba(0,0,0,.3) 0,rgba(0,0,0,.7) 0);
+    background:url(https://interactive.pri.org/themes/images/bg_pattern.png) repeat,-o-linear-gradient(bottom,rgba(0,0,0,.3) 0,rgba(0,0,0,.7) 0);
+    background:url(https://interactive.pri.org/themes/images/bg_pattern.png) repeat,linear-gradient(to top,rgba(0,0,0,.3) 0,rgba(0,0,0,.7) 0);
+    border-bottom:1px solid #000;
+    -webkit-box-shadow:inset inset 0 -145px 300px 0 #000;
+    box-shadow:inset 0 -145px 300px 0 #000;opacity:.5;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"
+  }
+  .header.cover {
+    background-image: url('../images/2020-02-03-every30seconds-12-lead-16x9.jpg');
+  }
+  /*overwriting header colors on lead image*/
+  .header .story__meta.field-date-published span {
+    color: #FFF;
+  }
+
+  .header .story__meta.field-fc-story-creators span {
+    color: #FFF;
+  }
+
+  .header .story__meta a {
+    color: #FFF;
+  }
+
+  /* styling for photo caption is different from PRI styling to eliminate a white strip on right end on Chrome on Iphone */
+  .interactive-caption {
+    font-size: .9em;
+    line-height: 1.4em;
+    margin: 10px 5px 0 0;
+    color: #6e6e81;
+    margin-bottom: 1.5em;
+  }
+
+  /* styling for charts and scrolling text box */
   .chart-container {position:relative;}	
   .chart-wrapper {position:absolute;bottom:5%;width: 100%;opacity:0;}
   .chart-box {margin: 0 auto;}
@@ -43,7 +136,7 @@
     font-size: 12px;
     font-weight: bold;
     position:absolute;
-    bottom:10px;
+    bottom:70px;
     right:10px;
     line-height: 20px;
     color: #333;
@@ -56,10 +149,12 @@
     float: left;
     margin:4px;
   }
-  #legend-swing {opacity:0;}
-  #legend-latino {opacity:1;}
-  #legend-latino-mobile {opacity:0;}
+  #legend-swing, #legend-latino-mobile {opacity:0;}
+  #legend-swing {bottom:80px;}
+  #legend-latino, #chart-title-4 {opacity:1;} 
   #legend-turnout {bottom:30%;}
+  #chart-title-4b {display: none;}
+
   @media (max-width: 700px ) { 
     .scroll-text-box {
       width:95%;
@@ -69,21 +164,52 @@
   @media (max-width: 500px ) { 
     .scroll-text-box {
       width:100%;
-      font-size: 0.8em;
+      font-size: 0.9em;
       line-height: 1.4em;
       padding: 5px;
     } 
+    .chart-title {
+      font-size: 0.8em;
+    }
   }
     
 </style>
+
+<!--### Keep! Google Analytics-->
+<script>(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");
+  ga("create", "UA-2145282-1", {"cookieDomain":"auto"});
+  ga("require", "displayfeatures");ga("set", "dimension2", "PRI\u0026#039;s The World"); // Program: ex: PRI\u0026#039;s The World
+  ga("set", "dimension3", "2018-10-02"); // Published Date ex: 2017-02-14
+  ga("set", "dimension4", "amazon, climate-change, brazil, deforestation"); // Story tags: comma separated, lowercase, hypen-ated, ex: michael-jordan
+  ga("set", "dimension5", "livable-plant, amazons-carbon-tipping-point"); // Sections, Verticals, Collections and Series: comma separated, lowercase, hypen-ated example: global-nation, across-womens-lives
+  ga("send", "pageview");
+</script>
+
 </head>
 <body class="interactive">
  <!-- ### example of header with a cover image -->
  <header class="header cover">
     <div class="container text">
-      <h1 id="title">Every 30 seconds, a young Latino turns 18. Their votes count more than ever.</h1>
+      <h1 id="title">Every 30 seconds, a young Latino in the US turns 18. Their votes count more than ever.</h1>
       <div class="teaser">
-        <p>Sample subtitle: The world's greatest forest used to absorb greenhouse gases. Now, it may be emitting them.</p>
+        <p>The 2020 election could be the first time Latinos comprise the largest minority group in the electorate. Here’s how young Latino voters could swing the election.</p>
+      </div>
+      <div class="story__meta-container">
+        <div class="story__meta-inner">
+        <p class="field-ref-program story__program story__meta"><a href="https://pri.org/programs/the-world">PRI's The World</a></p>
+        <p class="field-date-published story__meta">
+          <span class="date-display-single" property="dc:date" datatype="xsd:dateTime" content="2018-10-01T13:30:00-04:00">Oct. 2, 2018 · 1:30 PM EDT</span>
+        </p>
+        <p class="field-fc-story-creators story__meta"><span>Story by: </span> <a href="https://www.pri.org/people/tania-karas">Tania Karas</a><span></p>
+        <p class="field-fc-story-creators story__meta"><span>Radio editor: </span> <a href="https://www.pri.org/people/daisy-contreras">Daisy Contreras</a><span></p>
+        <p class="field-fc-story-creators story__meta"><span>Photo editor: </span> <a href="https://www.pri.org/people/steven-davy">Steven Davy</a><span></p>
+        <p class="field-fc-story-creators story__meta"><span>Developed by: </span> <a href="https://www.pri.org/people/kuang-keng-kuek-ser">Kuang Keng Kuek Ser</a><span></p>
+        <p class="field-fc-story-creators story__meta"><span>Edited by: </span> <a href="https://www.pri.org/people/lisa-de-bode">Lisa De Bode</a> & <a href="https://www.pri.org/people/monica-campbell">Monica Campbell</a><span></p>
+        
+        </div>
+        <div class="story__meta-right">
+          <a href="https://www.pri.org/programs/the-world" class="logo"><img typeof="foaf:Image" src="https://cdn2.pri.org/themes/images/logo-tw.png" width="85" height="85"></a>
+        </div>
       </div>
     </div>
   </header>
@@ -91,79 +217,145 @@
 <article role="main">
     <div class="container text">
       <div class="interactive-caption">
-        Top video/photo: Caption here. 
-        <div class="image__credit">Credit: XXXX XXXX/The World</div>
+        Top photo: Students fill out voter registration forms at Phoenix College on National Voter Registration Day, Sept. 24, 2019.
+        <div class="image__credit">Credit: Ross D. Franklin/AP Photos</div>
       </div>
-      <p><span class="drop-cap">A</span>pproximately every 30 seconds, a young Latino citizen of the United States turns 18, or voting age. The 2020 presidential election is expected to be the first time in history Latinos will comprise the largest racial and ethnic minority group in the electorate, with about 32 million eligible voters. Their massive growth as a voting bloc is largely driven by youth coming of age.</p>
-      <p>For the first time, Latino voters are set to surpass black voters, who . Demographics indicate 2020 will be the year Latinos MAKE THEIR MARK? in national politics. Their sheer numbers give them power to EXPLAIN THEIR IMPACT.</p>
+      <p><span class="drop-cap">W</span>ithin three days of arriving on campus at Harvard College in August, Erick Torres-Gonzalez, a first-year student, was registered to vote.</p>
+      <p>A student group called Harvard Votes Challenge helped him fill out a new-voter form for Wisconsin, his home state. Volunteers walked him through the US presidential election process during an orientation program Torres-Gonzalez attended for new students from low-income and minority backgrounds.</p>
+      <p>Many students there were the first in their families to attend college. In November, Torres-Gonzalez, who is 19, will also be the first in his family to vote.</p>
+      
+      Photo
+      
+      <p>Like others his age, he worries about rising inequality, climate change and criminal justice. His other big concern, immigration, is more specific to growing up as a young Latino in the US. Many of his friends are undocumented. He has vivid memories of his grandmother in tears on election night in 2016 when Donald Trump won the presidency. An immigrant from Mexico, she spoke no English and feared Trump’s promises to crack down on immigrants.</p> 
+      <p>The fact that Torres-Gonzalez is part of one of the nation’s youngest and fastest-growing minority groups gives him hope, he said.</p>  
+      <p>“Young Latinos and Latinas are now coming at that age where we can vote,” Torres-Gonzalez said. “Once you really see that — we are the one demographic that has to be looked out for.”</p>
       <div class="scroll-area">
-        <div id="start-text-1"><p>But the trick for candidates up and down the ballot will be getting Latinos to the polls on election day. Voter turnout rates among Latinos tends to be dismal — significantly below those of other groups. GIVE EXAMPLES. And only about half of all Latino eligible voters are registered to vote.</p></div>
+        <div id="start-text-1"><p>A record 32 million people who identify as Latino will be eligible to vote in the 2020 presidential election, <a href="https://www.pewsocialtrends.org/essay/an-early-look-at-the-2020-electorate/" target="_blank">according to Pew Research Center</a>. That’s just over 13% of the electorate —  surpassing eligible black voters for the first time and making Latinos the nation’s largest voter group after whites.</p></div>
         <div class="chart-container sticky-box text-center" id="sticky-box-1">
           <div class="chart-wrapper" id="chart-wrapper-1">
             <div class="chart-box" id="chart-1"></div>
-            <div class="chart-title">Racial & ethnic breakdown of eligible voters.</div>
+            <div class="chart-title">Eligible voters by race</div>
           </div>
         </div>
         <div class="scroll-text" id="scroll-text-1">
-          <div class="scroll-text-box">In the last presidential election in 2016, Blacks were the largest minority group among all eligible voters followed by Latinos</div>
+          <div class="scroll-text-box">In the 2016 presidential election, Latinos still trailed blacks, who comprised 12.5% of the American electorate.</div>
         </div>
         <div class="scroll-text" id="scroll-text-2">
-          <div class="scroll-text-box">In 2018, the fast-growing Latinos surpassed Blacks to become the largest minority group, for the first time in history.</div>
+          <div class="scroll-text-box">In 2018, Latinos surged to become the largest minority voter group for the first time.</div>
         </div>
         <div class="scroll-text" id="scroll-text-3">
-          <div class="scroll-text-box">It is projected that this trend will continue in the 2020 presidential election with Latinos making up a larger share of the electorate.</div>
+          <div class="scroll-text-box">As this trend continues, Latinos could comprise up to 13.3% of the electorate in the 2020 election.</div>
         </div>
       </div>
-      <div id="scroll-text-4"><p>The defining characteristic of Latinos is their youth: More than 60 percent of the nearly 60 million Latinos in the US are under 35 years old. MORE DESCRIPTION. About 4 million Latinos will have turned 18 since the 2016 presidential election, according to Maria Teresa Kumar, the CEO of political-advocacy group Voto Latino.</p></div>
+      <div id="scroll-text-4"><p>With those demographics, 2020 presents a historic opportunity for Latinos to make their mark on national politics, experts say. Their sheer numbers give them power to swing the vote in several key states, from Arizona to Pennsylvania. That could help either party. Latino voters, an incredibly diverse group, are not a monolith: Though they have leaned toward the Democratic Party in presidential elections for decades, roughly a third tend to vote Republican.</p></div>
       
+      photo
+
+      <p>Latinos’ massive growth as a voting bloc is largely driven by youth coming of age. Approximately every 30 seconds, a Latino in the US turns 18 and becomes eligible to vote. That’s nearly 75,000 potential new voters each month and some 900,000 each year, according to The World’s analysis of Census Bureau data. Since the 2016 elections, some 3.6 million Latinos will have turned 18 in time to vote this November.</p>
+      <p>“It matters. It underscores the point that no one who runs for president can afford to ignore this audience,” said Danny Friedman, managing director of Voto Latino, a Washington, DC-based nonpartisan civic engagement group targeting Latino youth. “There’s a whole generation of people who will now have the opportunity to vote who are Latinx, and we have a president who has gone out of his way to make issues related to Latinx people front and center — whether it’s family separations, whether it’s his ‘<a href="https://www.washingtonpost.com/politics/trump-attacks-protections-for-immigrants-from-shithole-countries-in-oval-office-meeting/2018/01/11/bfc0725c-f711-11e7-91af-31ac729add94_story.html" target="_blank">shithole countries</a>’ comments, whether it’s his <a href="https://www.businessinsider.com/trump-mexicans-rapists-remark-reference-2018-4" target="_blank">Mexicans-are-rapists</a> stuff.”</p>
+      <p>Latino voters tend to be younger than American voters overall.</p>
+
       <div class="sticky-box text-center" id="sticky-box-1b">
         <div id="chart-wrapper-1b">
           <div class="chart-box" id="chart-1b"></div>
-          <div class="chart-title">Age distribution of eligible voters.</div>
+          <div class="chart-title">Age distribution of American voters</div>
         </div>
       </div>
 
-      <p>EXPLAIN GET-OUT-THE-VOTE EFFORTS. And there are indications Latinos may turn out in unprecedented numbers in November. Latinos voted in record-breaking numbers in the 2018 midterm election. They were fueled by LIST SOME REASONS, according to EXPERT. That trend may well continue this fall.</p>
-      <p>Over the next year, The World will report on the young Latino electorate, including the issues, influences, concerns and challenges driving decision-making and turnout among young Latino voters across the United States. The project is a partnership with NAME EVERYONE INVOLVED. Each week, we’ll bring you stories of Latino youth from across the US — and explore what they care about as the election draws near.</p>
-  
+      <p>The challenge for candidates up and down the ballot will be convincing Latinos to turn out on Election Day. Turnout rates among eligible Latino voters tend to be low, significantly below those of other groups. About 48% of Latinos voted in the 2016 presidential election, compared to the national rate of about 61%. And younger voters, no matter their backgrounds, tend to be the <a href="https://www.census.gov/newsroom/blogs/random-samplings/2017/05/voting_in_america.html" target="_blank">least likely</a> to show up at the polls. (Latino turnout <a href="https://www.census.gov/library/stories/2019/04/behind-2018-united-states-midterm-election-turnout.html" target="_blank">skyrocketed</a> in the 2018 midterms, however, which might be a sign higher numbers of them will vote in 2020 as well.)</p>
+      <p>“There’s a storyline that Latinos are apathetic when it comes to voting,” said Clarissa Martínez de Castro, deputy vice president of policy and advocacy for UnidosUS, the nation’s largest Latino civil rights and advocacy organization. “That’s not true. They are <i>unconvinced</i>.”</p>
+      <p>Part of that, she said, is due to candidates’ history of overlooking Latino voters or taking them for granted. It takes about 13 points of contact — such as door knocks, text messages and phone calls — to get a non-voter to the ballot box, according to Latino Decisions, a research and polling firm. Running Spanish-language ads or translating a campaign website often isn’t enough.</p>
+      <p>“If you look at the last two election cycles, more than 60% of highly-likely-to-vote Latinos — meaning, registered — had not been reached out to by parties and candidates,” Martínez de Castro said. “That tells you not only is there little investment in closing voter registration gaps, but even those who are registered don’t get courted by candidates and parties.”</p>
+      <p>That amounts to leaving Latino votes on the table — which is “political malpractice” in a year like 2020, Martínez de Castro said.</p>
+      
+      Photo
+
       <div class="scroll-area">
-        <div id="start-text-5"><p>So, who are the Latino youth reshaping the US electoral landscape?</p></div>
+        <div id="start-text-5"><p>Early polls show the <a href="https://morningconsult.com/wp-content/uploads/2020/01/Morning-Consult-Political-Intelligence_January-14_MCPI_Final.pdf" target="_blank">leading Democratic candidate among Latinos</a> is Bernie Sanders. The 78-year-old white senator represents Vermont, the state with the lowest Latino population in the country. But he has built his national campaign strategy around attracting younger voters and people of color — particularly in Iowa, Nevada and California, states with early primaries and caucuses. His campaign is <a href="https://www.washingtonpost.com/politics/sanderss-caucus-target-latino-voters-usually-overlooked-in-mostly-white-iowa/2020/02/01/16a403f4-4503-11ea-aa6a-083d01b3ed18_story.html" target="_blank">investing millions</a> in getting first-time and historically neglected voter groups, especially Latinos, to the polls. Some Latino voters affectionately call him “Tío Bernie.”</p></div>
+        <div class="chart-container sticky-box text-center" id="sticky-box-5">
+          <div class="chart-wrapper" id="chart-wrapper-5">
+            <div class="chart-box" id="chart-5"></div>
+            <div class="chart-title">Election turnout rates for eligible voters, 1994-2018</div>
+            <div class="legend" id="legend-turnout">
+              <i style="background:#0089BD;opacity:1;"></i>National<br>
+              <i style="background:#FF9600;opacity:1;"></i>Latino<br>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-text" id="scroll-text-15">
+          <div class="scroll-text-box">Voter turnout among all US voters tends to be higher in presidential election years than in the midterms.</div>
+        </div>
+        <div class="scroll-text" id="scroll-text-16">
+          <div class="scroll-text-box">Turnout rates for Latinos tend to be lower than those of all other voter groups.</div>
+        </div>
+        <div class="scroll-text" id="scroll-text-17">
+          <div class="scroll-text-box">The 2018 midterms, however, saw a historic increase in turnout among all demographic groups, including Latinos.</div>
+        </div>
+      </div>  
+
+      <div id="scroll-text-8"><p><strong>Capturing the Latino youth vote</strong></p></div>        
+      <p>Because Latino voters overall are unusually young, candidates must make themselves relevant not only to Millennials, but to their younger counterparts, Generation Z, or those born after the mid-1990s. This November will be the first time most older members of Gen Z will vote. As a whole, Gen Z is the most diverse and well-educated generation in history.</p>
+      <p>Gen Z youth often <a href="https://www.pewsocialtrends.org/2019/01/17/generation-z-looks-a-lot-like-millennials-on-key-social-and-political-issues/" target="_blank">mirror Millennials</a> on a variety of issues: They tend to believe climate change is happening due to human activity and have little faith in Trump. They are a generation of youth who get much of their news from social media and may go through the entire presidential campaign season never seeing a television ad.</p>
+
+      Photo
+
+      <p>“I get all my news from Twitter,” said Torres-Gonzalez, the Harvard first-year student. “In college, most people don’t have TVs, so you can’t just turn on the TV and watch the news. We get everything from social media.”</p>
+
+      <div class="scroll-area">
+        <div id="start-text-15"><p>The youngest Latino voters tend to be a generation — or two, or three — removed from the immigrant experience. So the usual campaign trail talking points for older Latinos won’t always resonate.</p></div>
         <div class="chart-container sticky-box text-center" id="sticky-box-2">
           <div class="chart-wrapper" id="chart-wrapper-2">
             <div class="chart-box" id="chart-2"></div>
-            <div class="chart-title">Eligible Latino voters born in US.</div>
+            <div class="chart-title">Latino eligible voters born in the US</div>
           </div>
         </div>
         <div class="scroll-text" id="scroll-text-5">
-          <div class="scroll-text-box">Unlike their parents and grandparents, the overwhelming majority — 95 out of every 100 — of Latinos aged 18 to 23 are born as US citizens.</div>
+          <div class="scroll-text-box">Unlike their parents and grandparents, most Gen Z Latino voters — 95 of every 100 — were born in the US.</div>
         </div>
         <div class="scroll-text" id="scroll-text-6">
-          <div class="scroll-text-box">Among Latino Milennials voters, this number is 86.</div>
+          <div class="scroll-text-box">Among Millennials, 86 out of every 100 were born in the US.  </div>
         </div>
         <div class="scroll-text" id="scroll-text-7">
-          <div class="scroll-text-box">The number is very low among the older generations.</div>
+          <div class="scroll-text-box">Older generations are far more likely to have been born elsewhere and immigrated to the US.</div>
         </div>
-      </div>  
-      <div id="scroll-text-8"><p>In addition, while Spanish is still commonly used in the home, the youngest cohort of Latinos in are likelier to speak English as the dominant language at home.</p></div>        
+      </div> 
+
+      <div id="scroll-text-18"><p>In addition, though many speak Spanish at home, English is becoming more dominant.</p></div>
       <div class="sticky-box text-center" id="sticky-box-3">
         <div id="chart-wrapper-3">
           <div class="chart-box" id="chart-3"></div>
-          <div class="chart-title">Language spoken at home for Latino voters.</div>
+          <div class="chart-title">Language spoken at home among Latino eligible voters</div>
         </div>
       </div> 
-      <p>ANALYSIS HERE FROM TANIA ON WHAT ISSUES LATINOS CARE ABOUT. EXPLAIN DIFFERENCES IN POLITICAL LEANINGS OF YOUNGER LATINOS VERSUS OLDER LATINO GROUPS.</p>
+      <p>So how can candidates reach the youngest Latino voters? Groups like Voto Latino, which has thousands of volunteers in battleground states, are betting on a mix of standard civic engagement and voter registration efforts — alongside less traditional strategies.</p>
+      <p>The group’s Twitter and Instagram feeds are a mix of informational and humorous posts that explain everything from the latest news to how elections work. Before the Feb. 3 Iowa caucus, Voto Latino released a social video headlined, “<a href="https://www.instagram.com/tv/B788LJtlfEU/?utm_source=ig_web_copy_link" target="_blank">What the Hell is a Caucus?</a>” using varieties of tacos as stand-ins for presidential candidates. (The lucky winner? Tacos al pastor.)</p>
+      <p>One innovative get-out-the-vote effort comes from Jolt Texas, a progressive and youth-focused civic engagement nonprofit with offices in Austin, Dallas and Houston. Last May, Jolt began joining forces with teenage girls celebrating their fifteenth birthdays with quinceañeras, a coming-of-age tradition among some Latinos and Latin Americans. Jolt runs <a href="https://www.poderquince.com/" target="_blank">voter registration tables at the parties</a> — complete with a free photo booth and #PoderQuince Snapchat filter.</p>
+      <p>“The purpose of Poder Quince was to harness the power of Latino culture to create a new tradition that combines our heritage and political power, and we are using the voices of young Latinas to lead this effort,” said Jolt’s interim director Antonio Arellano. The group estimates 5,000 quinceañeras are celebrated across Texas annually — a major opportunity to find first-time voters. Jolt volunteers have attended more than 40 parties so far, Arellano said.</p>
+      <p>Texas is one state that Democrats hope to turn blue within a generation or two — and much of that effort could be driven by harnessing the Latino vote. Half of all Texans under age 18 are Latinos.</p>
+      <p>Nearly 60 million Latinos live in the United States, comprising about 18% of the nation’s population. <a href="https://www.pewresearch.org/fact-tank/2020/01/31/where-latinos-have-the-most-eligible-voters-in-the-2020-election/" target="_blank">Only about half</a> of US Latinos are eligible to vote in 2020, the smallest share of any ethnic or racial group. That’s partly because Latinos as a group are still so young, and also because millions of Latino adults are non-citizens who can’t vote — many because they are undocumented.</p>
+      <p><strong>How Latinos vote</strong></p>
+      <p>Changing demographics — along with a backlash against Trump’s anti-immigrant rhetoric and policies, many of which have targeted Latinos — could present an opportunity for Democrats to take back the White House this fall.</p>
+      <p>Latinos tend to prefer Democrats by a two-to-one margin. <a href="https://www.pewresearch.org/fact-tank/2020/01/17/latino-democratic-voters-place-high-importance-on-2020-presidential-election/" target="_blank">A recent study</a> by Pew Research Center found that 68% of Latino registered voters disapprove of the way Trump is handling his job, and 67% are dissatisfied with the country’s direction.</p>
+      <p>But to change where it’s going, Democrats will need to invest more heavily in courting Latinos and getting them registered to vote. At this stage, most Democratic presidential candidates are concentrating their efforts on early caucus and primary states such as Iowa and New Hampshire, which happen to be overwhelmingly white.</p>
+
+      Photo
     
-      <div class="counter-wrapper">Counter here
-
-
-      </div>
+      <p>Several Latino officials told The World that while candidate interest in Latinos is finally picking up, it’s not enough.</p>
+      <p>Outreach strategies to Latinos of all ages will have to cater to the needs of all of them. After all, Latino voters do not vote as a bloc. Terms like Hispanic and Latino/Latina/Latinx are umbrella terms for a group that is culturally, ideologically and linguistically diverse, said G. Cristina Mora, a sociology professor at the University of California, Berkeley, and author of “<a href="https://www.amazon.com/Making-Hispanics-Activists-Bureaucrats-Constructed/dp/022603383X" target="_blank">Making Hispanics: How Activists, Bureaucrats, and Media Constructed a New American</a>.”</p>
+      <p>That means candidates need to better tailor their messages to reach them, she said.</p>
+      <p>“You have different generational statuses, different ethnicities, different languages. So it’s almost like you need to have various strategies on blast all at once,” she added. “You have to make sure your message is in Spanish, but you have to make sure you’re using proper terminology. It’s going to vary if you’re targeting Cubans or if you’re targeting Mexicans.”</p>
+      <p>The issues candidates raise must go beyond immigration, too, said David Cruz, communications director at the League of United Latino American Citizens, the oldest Latino civil rights organization in the US.</p>
+      <p>“If you ask a Latino voter, ‘What are your top three issues?’ they’re not going to say immigration three times,” Cruz said. “That’s one issue, but they’re also going to say the economy and healthcare and education.”</p>
+      <p><strong>Where Latinos can make a difference in 2020</strong></p>
+      <p>A recent Telemundo poll showed Trump is on track to capture <a href="https://www.politico.com/f/?id=0000016e-3dc9-ddf0-ad6e-bfc97c490000" target="_blank">about a quarter</a> of the Latino vote in 2020. Last year, his campaign launched a target effort called “Latinos for Trump,” and held a rally in New Mexico, a state where Latinos comprise 43% of eligible voters — the highest share in the nation. The goal for Trump may be to peel off enough votes from Democrats to reach the 270 electoral college votes needed to win the White House.</p>
 
       <div class="scroll-area">
-        <div id="start-text-9"><p>ANALYSIS FROM TANIA ON WHERE IN THE COUNTRY LATINOS MIGHT HOLD THE MOST SWAY. NAME A FEW STATES THAT WILL BE BATTLEGROUNDS. MENTION THE DATES OF THEIR PRIMARIES.</p></div>
+        <div id="start-text-9"><p>“Trump is not going to necessarily win any more of the Latino vote,” said Matt Baretto, cofounder of Latino Decisions, the polling firm. “The Democrats are going to win back Arizona and Nevada again, and if they’re going to win in 2020 it’s going to be by increasing voter turnout. It’s going to be mobilizing likely Democratic voters — and making them feel included in the process. They need to connect with those people and make them included and welcomed and wanted.”</p></div>
         <div class="chart-container sticky-box text-center" id="sticky-box-4">
           <div class="chart-wrapper" id="chart-wrapper-4">
             <div class="chart-box" id="chart-4"></div>
-            <div class="chart-title">Where are the Latino voters?</div>
+            <div class="chart-title" id="chart-title-4">Map of Latino electorate</div>
+            <div class="chart-title" id="chart-title-4b">Where young Latino voters can have an impact </div>
             <div class="legend" id="legend-latino">
               <b>Percentage of</b><br><b>Latino voters</b><br>
               <i style="background:#ffcf4f;opacity:1;"></i>5% or less<br>
@@ -198,50 +390,22 @@
           </div>
         </div> 
         <div class="scroll-text" id="scroll-text-9">
-          <div class="scroll-text-box">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+          <div class="scroll-text-box">Two-thirds of Latino eligible voters live in five states: California, which is home to a quarter of the nation’s Latino electorate; Texas, Florida, New York and Arizona.</div>
         </div>
         <div class="scroll-text" id="scroll-text-10">
-          <div class="scroll-text-box">Democrats are desperate to turn Texas blue. Accounts for a quarter (25%) of eligible but unregistered young Latino voters. </div>
+          <div class="scroll-text-box">Latinos make up 43% of voters in New Mexico, the highest rate in the nation.</div>
         </div>
         <div class="scroll-text" id="scroll-text-11">
-          <div class="scroll-text-box">Something about Florida.</div>
+          <div class="scroll-text-box">Remove this</div>
         </div>
         <div class="scroll-text" id="scroll-text-12">
-          <div class="scroll-text-box">Show only the 9 states.</div>
+          <div class="scroll-text-box">In nine states, the number of Latinos who are Gen Z — thus likeliest to be voting for the first time — is greater than the margin by which either presidential candidate won in 2016.</div>
         </div>
         <div class="scroll-text" id="scroll-text-13">
-          <div class="scroll-text-box">Change color of the 9 states. Change the legend too.</div>
+          <div class="scroll-text-box">Hilary Clinton won three of those states: Nevada, New Mexico and New Hampshire. Trump won the rest: Arizona, Texas, Wisconsin, Florida, Michigan and Pennsylvania.</div>
         </div>
       </div> 
-      <div id="scroll-text-14"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      
-      <div class="scroll-area">
-        <div id="start-text-15"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-        <div class="chart-container sticky-box text-center" id="sticky-box-5">
-          <div class="chart-wrapper" id="chart-wrapper-5">
-            <div class="chart-box" id="chart-5"></div>
-            <div class="chart-title">Turnout rate 1994-2018.</div>
-            <div class="legend" id="legend-turnout">
-              <i style="background:#0089BD;opacity:1;"></i>National<br>
-              <i style="background:#FF9600;opacity:1;"></i>Latino<br>
-            </div>
-          </div>
-        </div>
-        <div class="scroll-text" id="scroll-text-15">
-          <div class="scroll-text-box">In the past elections, turnout rate of midterm elections is usually lower than presidential elections.</div>
-        </div>
-        <div class="scroll-text" id="scroll-text-16">
-          <div class="scroll-text-box">For Latino voters, their turnout rate is lower than the national average.</div>
-        </div>
-        <div class="scroll-text" id="scroll-text-17">
-          <div class="scroll-text-box">However, 2018 midterm election saw a historic increase in turnout rate across all demographics including Latinos.</div>
-        </div>
-      </div>  
-      <div id="scroll-text-18"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>  
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>      
+      <div id="scroll-text-14"><p>This story is the first in our Every 30 Seconds series, produced with support from the Corporation for Public Broadcasting.</p></div>        
     </div>    
 </article>
 
