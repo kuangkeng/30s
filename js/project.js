@@ -412,10 +412,11 @@ $(document).ready(function() {
 
     $("#scroll-text-12").waypoint(function(direction) {
         if (direction === "down") {
-            chart4.get("latinoMap").points[9].update({borderWidth: 0});
+            chart4.get("latinoMap").points[31].update({color: '#9b4500',dataLabels: labelstyle5});
             for (i=0; i < dataStatesNon.length; i += 1) {
                 chart4.get(dataStatesNon[i]).update({color:"#fff", dataLabels: labelstyle3},true,false);
             }
+
         } else {}
     }, {
         offset: "50%"
