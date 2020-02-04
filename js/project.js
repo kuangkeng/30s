@@ -42,6 +42,7 @@ $(document).ready(function() {
     var dataStatesNon = ["AL","AK","AR","CA","CO","CT","DE","DC","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MN","MS","MO","MT","NE","NJ","NY","NC","ND","OH","OK","OR","RI","SC","SD","TN","UT","VT","VA","WA","WV","WY"];
     var stateRed = ["TX","FL","PA","AZ","MI","WI"];
     var stateBlue = ["NM","NV","NH"];
+    var stateBlueRed = ["TX","FL","PA","AZ","MI","WI","NM","NV","NH"];
 
     var catAge = ["*16-20","21-35","36-50","51-65","66-80","81-100"];
     var dataAge = [
@@ -416,8 +417,26 @@ $(document).ready(function() {
             for (i=0; i < dataStatesNon.length; i += 1) {
                 chart4.get(dataStatesNon[i]).update({color:"#fff", dataLabels: labelstyle3},true,false);
             }
-
-        } else {}
+        } else {
+            for (i=0; i < dataStatesNon.length; i += 1) {
+                var getPoint = chart4.get(dataStatesNon[i])
+                var pointValue = getPoint.value;
+                if(pointValue <= 5) {
+                    getPoint.update({color:"#ffcf4f", dataLabels: labelstyle5},true,false);
+                } else if (pointValue > 5 && pointValue <= 10){
+                    getPoint.update({color:"#ffaa23", dataLabels: labelstyle5},true,false);
+                } else if (pointValue > 10 && pointValue <= 15){
+                    getPoint.update({color:"#f18a00", dataLabels: labelstyle5},true,false);
+                } else if (pointValue > 15 && pointValue <= 20){
+                    getPoint.update({color:"#d37300", dataLabels: labelstyle5},true,false);
+                } else if (pointValue > 20 && pointValue <= 25){
+                    getPoint.update({color:"#b75c00", dataLabels: labelstyle5},true,false);
+                } else {
+                    getPoint.update({color:"#9b4500", dataLabels: labelstyle5},true,false);
+                }
+            }
+            chart4.get("latinoMap").points[31].update({color: '#9e9e9e',dataLabels: labelstyle5},true,false);
+        }
     }, {
         offset: "50%"
     });
@@ -439,7 +458,34 @@ $(document).ready(function() {
             $("#chart-title-4").fadeOut(500,function() {
                 $("#chart-title-4b").fadeIn();
             });
-        } else {}
+        } else {
+            for (i=0; i < stateBlueRed.length; i += 1) {
+                var getPoint = chart4.get(stateBlueRed[i])
+                var pointValue = getPoint.value;
+                if(pointValue <= 5) {
+                    getPoint.update({color:"#ffcf4f", dataLabels: labelstyle5},true,false);
+                } else if (pointValue > 5 && pointValue <= 10){
+                    getPoint.update({color:"#ffaa23", dataLabels: labelstyle5},true,false);
+                } else if (pointValue > 10 && pointValue <= 15){
+                    getPoint.update({color:"#f18a00", dataLabels: labelstyle5},true,false);
+                } else if (pointValue > 15 && pointValue <= 20){
+                    getPoint.update({color:"#d37300", dataLabels: labelstyle5},true,false);
+                } else if (pointValue > 20 && pointValue <= 25){
+                    getPoint.update({color:"#b75c00", dataLabels: labelstyle5},true,false);
+                } else {
+                    getPoint.update({color:"#9b4500", dataLabels: labelstyle5},true,false);
+                }
+            }
+            if (width<500){
+                $("#legend-latino-mobile").fadeTo(500, 1);
+            }else{
+                $("#legend-latino").fadeTo(500, 1);
+            }    
+            $("#legend-swing").fadeTo(500, 0);
+            $("#chart-title-4b").fadeOut(500,function() {
+                $("#chart-title-4").fadeIn();
+            });        
+        }
     }, {
         offset: "50%"
     });
