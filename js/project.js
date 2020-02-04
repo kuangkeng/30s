@@ -310,17 +310,26 @@ $(document).ready(function() {
         } else {}
     });
 
-    $("#scroll-text-10").waypoint(function(direction) {
+    $("#scroll-text-9").waypoint(function(direction) {
         if (direction === "down") {
-            chart4.get("latinoMap").points[43].update({borderWidth: 7,borderColor: '#ffdf00'});
+            chart4.get("latinoMap").points[4].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[9].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[2].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[32].update({color: '#9e9e9e',dataLabels: labelstyle4});
+            chart4.get("latinoMap").points[43].update({color: '#9e9e9e',dataLabels: labelstyle4});
         } else {}
     }, {
         offset: "50%"
     });
-    $("#scroll-text-11").waypoint(function(direction) {
+
+    $("#scroll-text-10").waypoint(function(direction) {
         if (direction === "down") {
-            chart4.get("latinoMap").points[43].update({borderWidth: 0});
-            chart4.get("latinoMap").points[9].update({borderWidth: 7,borderColor: '#ffdf00'});
+            chart4.get("latinoMap").points[4].update({color: '#9b4500',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[9].update({color: '#b75c00',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[2].update({color: '#b75c00',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[32].update({color: '#f18a00',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[43].update({color: '#9b4500',dataLabels: labelstyle5});
+            chart4.get("latinoMap").points[31].update({color: '#9e9e9e',dataLabels: labelstyle4});
         } else {}
     }, {
         offset: "50%"
@@ -494,6 +503,7 @@ $(document).ready(function() {
     };
     var labelstyle3 ={color: '#d3d3d3'};
     var labelstyle4 ={color: '#fff'};
+    var labelstyle5 ={color: '#333'};
 
     function addLabel(id,cat,num){
         var siri = chart5.get(id);
